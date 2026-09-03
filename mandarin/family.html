@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mandarin Field Manual — Addendum: Your Family's Mandarin</title>
+<style>
+:root{
+  --sea:#0d4351;--teal:#177d8c;--aqua:#3fb8c4;--foam:#e6f5f7;--sand:#f4ecd9;
+  --coral:#d9614a;--ink:#10242a;--muted:#4f6b72;--paper:#fbf8f1;--line:#c9dde1;
+  --font-display:"Carter One","Trebuchet MS",Verdana,sans-serif;
+  --font-body:"Atkinson Hyperlegible","Atkinson Hyperlegible Next",-apple-system,"Segoe UI",Helvetica,sans-serif;
+  --font-han:"Noto Sans SC","Noto Sans CJK SC","PingFang SC","Hiragino Sans GB","Heiti SC","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.65}
+.wrap{max-width:840px;margin:0 auto;padding:0 20px 100px}
+p,li{max-width:68ch}
+
+.masthead{background:var(--sea);color:var(--foam);padding:44px 0 36px;border-bottom:6px solid var(--sand)}
+.masthead .wrap{padding-bottom:0}
+.masthead h1{font-family:var(--font-display);font-size:2.4rem;line-height:1.15;margin:0 0 6px;color:#fff}
+.masthead .sub{color:var(--aqua);margin:0 0 22px;font-size:1.05rem}
+.stamp{display:inline-block;font-family:var(--font-han);font-size:3.4rem;line-height:1;color:var(--sand);border:3px solid var(--aqua);border-radius:10px;padding:10px 16px;margin-bottom:18px}
+.masthead .gloss{color:var(--foam);opacity:.85;font-size:.95rem;margin:0}
+
+nav{position:sticky;top:0;z-index:20;background:var(--teal);border-bottom:3px solid var(--sea)}
+nav ul{max-width:840px;margin:0 auto;padding:0 12px;list-style:none;display:flex;flex-wrap:wrap;gap:2px}
+nav a{display:block;min-height:44px;line-height:44px;padding:0 14px;color:#fff;text-decoration:none;font-size:.92rem}
+nav a:hover{background:var(--sea)}
+nav a:focus-visible{outline:3px solid var(--sand);outline-offset:-3px}
+
+section{padding-top:38px}
+h2{font-family:var(--font-display);font-size:1.7rem;color:var(--sea);margin:0 0 4px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+h3{font-family:var(--font-display);font-size:1.15rem;color:var(--teal);margin:26px 0 6px}
+h4{font-size:1rem;margin:18px 0 4px;color:var(--sea)}
+
+.why{background:var(--foam);border-left:6px solid var(--teal);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}
+.why h4{margin-top:0;color:var(--teal)}
+.why p:last-child{margin-bottom:0}
+
+.uncertain{background:#fffbe9;border:2px dashed #c8a33a;border-radius:10px;padding:14px 18px;margin:18px 0}
+.uncertain h4{margin-top:0;color:#8a6d18}
+.uncertain p:last-child{margin-bottom:0}
+
+.gate{background:#fdf1ee;border:2px solid var(--coral);border-radius:10px;padding:16px 18px;margin:30px 0 10px}
+.gate h4{margin:0 0 8px;color:var(--coral);font-family:var(--font-display);font-size:1.1rem}
+.gate ol{margin:0;padding-left:22px}
+.gate li{margin-bottom:6px}
+.gate .note{margin:10px 0 0;font-size:.9rem;color:var(--muted)}
+
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:.95rem}
+th{background:var(--sea);color:#fff;text-align:left;padding:10px 12px;font-weight:normal}
+td{border-bottom:1px solid var(--line);padding:9px 12px;vertical-align:middle}
+tr:nth-child(even) td{background:#f5f1e6}
+.han{font-family:var(--font-han);font-size:1.45rem;line-height:1.3}
+td.han{width:120px;color:var(--sea)}
+.py{color:var(--teal);font-style:italic}
+
+.person{border:2px solid var(--line);border-radius:12px;background:#fff;padding:0;margin:22px 0;overflow:hidden}
+.person header{background:var(--teal);color:#fff;padding:12px 18px}
+.person header h3{margin:0;color:#fff;font-size:1.25rem}
+.person header .place{font-size:.9rem;opacity:.9;display:block;margin-top:2px}
+.person .body{padding:16px 18px}
+.person .body p:last-child{margin-bottom:0}
+.person.mother header{background:var(--sea)}
+.person.stepdad header{background:var(--coral)}
+
+.verdict{border-left:6px solid var(--aqua);background:var(--sand);padding:12px 16px;margin:14px 0;border-radius:0 8px 8px 0}
+.verdict strong{color:var(--sea)}
+
+footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--line);color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{
+  nav{display:none}
+  body{background:#fff;font-size:11pt}
+  .masthead{background:#fff;color:#000;border-bottom:2px solid #000}
+  .masthead h1,.masthead .sub,.masthead .gloss{color:#000}
+  .stamp{color:#000;border-color:#000}
+  .person header{background:#eee!important;color:#000}
+  .person header h3{color:#000}
+  section{page-break-inside:avoid}
+}
+</style>
+
+<style id="py-layer">
+.zh{position:relative;cursor:help;border-bottom:1px dotted transparent;transition:border-color .12s}
+.zh:hover,.zh.on{border-bottom-color:var(--aqua)}
+.zh::after{
+  content:attr(data-py);
+  position:absolute;left:0;bottom:calc(100% + 4px);
+  background:var(--sea);color:#fff;
+  font-family:var(--font-body);font-style:normal;font-weight:normal;
+  font-size:.8rem;line-height:1.3;letter-spacing:0;
+  padding:4px 9px;border-radius:6px;white-space:nowrap;
+  box-shadow:0 2px 8px rgba(13,67,81,.25);
+  display:none;z-index:30;pointer-events:none;
+}
+.zh:hover::after,.zh.on::after{display:block}
+body.py-always .zh::after{
+  display:inline;position:static;background:none;color:var(--teal);
+  box-shadow:none;padding:0 0 0 .35em;font-size:.72em;white-space:normal;
+}
+body.py-always .zh{border-bottom-color:transparent}
+body.py-off .zh::after{display:none!important}
+body.py-off .zh{cursor:auto;border-bottom-color:transparent}
+.pytoggle button{
+  min-height:44px;height:44px;padding:0 14px;margin:0;
+  background:var(--sea);color:#fff;border:none;
+  font-family:var(--font-body);font-size:.92rem;cursor:pointer;
+}
+.pytoggle button:hover{background:var(--coral)}
+.pytoggle button:focus-visible{outline:3px solid var(--sand);outline-offset:-3px}
+@media print{.zh::after{display:none!important}.pytoggle{display:none}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="stamp">咱们</div>
+    <h1>Addendum — Your Family's Mandarin</h1>
+    <p class="sub">Zhejiang, Liaoning, Beijing: what you'll actually be listening to</p>
+    <p class="gloss">zánmen — "we, including you." Northern speakers use it constantly where southern speakers say 我们. You will hear it a lot from one side of your family and rarely from the other.</p>
+  </div>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#verdict">The short version</a></li>
+    <li><a href="#mother">Your mother's side</a></li>
+    <li><a href="#stepdad">Your step-father's side</a></li>
+    <li><a href="#names">What to call people</a></li>
+    <li><a href="#plan">Who to practise with</a></li>
+    <li><a href="#unknowns">What I don't know</a></li>
+  </ul>
+</nav>
+
+<div class="wrap">
+
+<section id="verdict">
+  <h2>The short version</h2>
+  <p class="look">Pinyin layer: hover any Chinese text (or tap it, on iPad) to see its reading. The button at the right of the menu bar cycles between hover, always-shown, and off. Readings are dictionary tones — tone sandhi is not applied except in a few fixed phrases — so 你好 shows as nǐ hǎo, and Part D of the Phase 1 manual is where the spoken form lives.</p>
+
+
+  <div class="verdict">
+    <p><strong>Standard Mandarin is the right target and nothing about your family changes that.</strong> Your mother was educated in Beijing; your step-father's Mandarin is Northeastern, which is one of the closest regional varieties to the standard. Both are within easy reach of what the Phase 0 and Phase 1 manuals teach.</p>
+    <p><strong>The one thing that does change: your step-father is your best practice partner, and you should start with him.</strong> Northeastern Mandarin is grammatically almost identical to the standard and phonetically very close. Your mother's Mandarin carries a southern substrate that makes some sounds less clear as a model — not worse, but less useful as a template while you are rebuilding your ear.</p>
+    <p><strong>And one thing to stop worrying about: your aunt and uncle.</strong> If they sound like locals, they are speaking something Mandarin will not unlock. Details below, but the practical point is that failing to understand them is not a measure of your progress.</p>
+  </div>
+</section>
+
+<section id="mother">
+  <h2>Your mother's side — Meicheng, Jiande, Zhejiang</h2>
+
+  <div class="person mother">
+    <header>
+      <h3>Two languages, not one accent</h3>
+      <span class="place">梅城, 建德, 浙江 — on the Xin'an River 新安江</span>
+    </header>
+    <div class="body">
+      <p>Meicheng is a town in Jiande, in Hangzhou prefecture. The local speech, Jiande dialect, is classified as <strong>Wu Chinese</strong> — specifically within the Wuzhou (婺州) group of Southern Wu, centred on Jinhua, and sometimes grouped instead into a proposed Jinqu subfamily. The classification is genuinely disputed among linguists; the branch is not.</p>
+      <p>The thing to understand about that: Wuzhou Wu is described as only poorly intelligible even with <em>Taihu</em> Wu, the northern branch that includes Shanghainese, Suzhou and Hangzhou speech. It is a separate language from Mandarin by any ordinary measure — it preserves voiced initial consonants that Mandarin lost, and runs seven or eight tones against Mandarin's four.</p>
+      <p><strong>Stated plainly: learning Mandarin will give you no access at all to your mother's childhood dialect.</strong> That is not a failure of your plan, it is a fact about the languages. If you ever want that dialect too, it is a separate and much harder project — Wuzhou Wu has essentially no learning materials, no standard written form, and no courses.</p>
+    </div>
+  </div>
+
+  <h3>What a Wu background typically does to someone's Mandarin</h3>
+  <p>Your mother studied at Beijing Jiaotong University, so she has years of immersion in northern Putonghua sitting on top of a Wu-speaking childhood. "All over the place" is exactly what that produces, and it is extremely common — she will move between registers depending on who she is talking to.</p>
+  <p>The features below are what a Wu substrate <em>typically</em> leaves behind. Treat this as a list of things to listen for, not a description of her:</p>
+  <table>
+    <thead><tr><th>Feature</th><th>What you'd hear</th></tr></thead>
+    <tbody>
+      <tr><td>Retroflexes soften</td><td>Wu has no zh / ch / sh / r series, so they often merge toward z / c / s. 是 <span class="py">shì</span> drifts toward <span class="py">sì</span>; 知道 <span class="py">zhīdào</span> toward <span class="py">zīdào</span>.</td></tr>
+      <tr><td>-n and -ng blur</td><td>The distinction that Part A of Phase 0 insists on is weaker in southern speech. 很 / 行 may sound closer together than the manual implies.</td></tr>
+      <tr><td>Little or no erhua</td><td>Southern speakers largely drop the 儿 suffix. 一点儿 becomes 一点, 哪儿 becomes 哪里.</td></tr>
+      <tr><td>n / l — probably <em>not</em></td><td>An n/l merger is common in Hunan, Hubei and Sichuan speech but is not a typical Wu feature; Wu varieties generally keep them distinct. Listed here so you don't go looking for it.</td></tr>
+      <tr><td>我们 over 咱们</td><td>咱们 is a northern habit. Southern speakers use 我们 for both inclusive and exclusive "we."</td></tr>
+    </tbody>
+  </table>
+
+  <div class="why">
+    <h4>The implication for your own pronunciation, stated outright</h4>
+    <p>If your early Mandarin came from your mother, some of these features are probably in <em>your</em> mouth too — most likely the soft retroflexes and the weak -n/-ng contrast. Both are on the Phase 0 Part A trap list.</p>
+    <p>That is not an error you made. It is an accent you inherited, and it is a real and normal way that hundreds of millions of people speak Mandarin. Whether you want to move toward the northern standard or keep it is a preference, not a correctness question. What matters is that you know which features are yours, so you can hear them.</p>
+  </div>
+</section>
+
+<section id="stepdad">
+  <h2>Your step-father's side — Shenyang, Liaoning, with Beijing above it</h2>
+
+  <div class="person stepdad">
+    <header>
+      <h3>Northeastern Mandarin (东北话)</h3>
+      <span class="place">沈阳, 辽宁 — father from Beijing, mother from Liaoning</span>
+    </header>
+    <div class="body">
+      <p>This is good news for you. Northeastern Mandarin is a Mandarin variety, not a separate language — grammar essentially identical to the standard, vocabulary mostly shared, phonology close. It is generally reckoned one of the easiest regional accents for a learner of Standard Mandarin to follow.</p>
+      <p>A Beijing father and a Liaoning mother in a military family also means a household that would have used Putonghua as a matter of course. Military families were posted across the country and standard speech was the norm rather than the exception.</p>
+    </div>
+  </div>
+
+  <h3>What to listen for</h3>
+  <table>
+    <thead><tr><th>Feature</th><th>What you'd hear</th></tr></thead>
+    <tbody>
+      <tr><td>Heavy erhua</td><td>The 儿 suffix on far more words than the textbook uses, especially from the Beijing side. 一会儿, 好玩儿, 这儿, 味儿.</td></tr>
+      <tr><td>Swallowed syllables</td><td>A Beijing habit. 不知道 compresses toward something like "bùr-dào"; 我们 toward "wǒm". This is the single hardest thing about Beijing speech for learners, and it is a compression, not a different word.</td></tr>
+      <tr><td>Flat / retroflex swaps</td><td>Northeastern speakers sometimes have z/c/s where the standard has zh/ch/sh, or the reverse — but per word rather than across the board.</td></tr>
+      <tr><td>Tone contour differences</td><td>The four tones are the same tones, but the pitch shapes sit slightly differently. Your ear adjusts to this quickly and it rarely blocks comprehension.</td></tr>
+      <tr><td>咱 / 咱们 everywhere</td><td>Inclusive "we." 咱们一起去 means "let's go, you and me." Worth adding to your active vocabulary — it sounds warm and it is a northern marker.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Northeastern words you will hear and will not find in HSK</h3>
+  <p>These are colloquial, so romanizations vary between sources and tone marks on some are approximate. Recognition is the goal — you do not need to produce these.</p>
+  <table>
+    <thead><tr><th>Word</th><th>Pinyin</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td class="han">咋</td><td class="py">zǎ</td><td>how / what — replaces 怎么. 咋了？ = what's up / what happened?</td></tr>
+      <tr><td class="han">咋整</td><td class="py">zǎ zhěng</td><td>what do we do about it?</td></tr>
+      <tr><td class="han">整</td><td class="py">zhěng</td><td>do, make, get, fix — an all-purpose verb standing in for many others</td></tr>
+      <tr><td class="han">干哈 / 嘎哈</td><td class="py">gàn há / gá há</td><td>what are you doing? — the northeastern form of 干什么</td></tr>
+      <tr><td class="han">唠嗑</td><td class="py">lào kē</td><td>to chat, to natter. 唠会儿嗑 = have a chat</td></tr>
+      <tr><td class="han">贼</td><td class="py">zéi</td><td>very, really. 贼好吃 = seriously delicious</td></tr>
+      <tr><td class="han">老⋯⋯了</td><td class="py">lǎo … le</td><td>also "very." 老远了 = really far</td></tr>
+      <tr><td class="han">埋汰</td><td class="py">mái tai</td><td>dirty, grubby</td></tr>
+      <tr><td class="han">稀罕</td><td class="py">xī han</td><td>to be fond of, to dote on. Used about people, warmly</td></tr>
+      <tr><td class="han">得瑟</td><td class="py">dè se</td><td>to show off, to swan about</td></tr>
+      <tr><td class="han">彪</td><td class="py">biāo</td><td>daft, silly — affectionate rather than harsh, usually</td></tr>
+    </tbody>
+  </table>
+
+  <div class="why">
+    <h4>Why this table earns its place</h4>
+    <p>None of these are in any HSK list, and several are among the most frequent words in casual northeastern speech. 咋 alone will appear more often in an hour of family conversation than most of the HSK 2 wordlist. Knowing ten of them turns a wall of unfamiliar speech into standard Mandarin with ten known substitutions in it.</p>
+  </div>
+</section>
+
+<section id="names">
+  <h2>What to call people</h2>
+
+  <div class="why">
+    <h4>Why this needs its own section</h4>
+    <p>Chinese kinship terms encode which side of the family a person is on and their age relative to your parent. There is no general word for "aunt" or "uncle" — the term tells you the relationship. Getting these right is noticed, and getting them wrong is the most visible kind of learner error inside a family.</p>
+  </div>
+
+  <h3>Parents</h3>
+  <table>
+    <thead><tr><th>Term</th><th>Pinyin</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td class="han">妈 / 妈妈</td><td class="py">mā / māma</td><td>The safe default everywhere. 妈 alone is the normal spoken address.</td></tr>
+      <tr><td class="han">娘</td><td class="py">niáng</td><td>Northern, and now reads as older or rural. Your step-father's region uses it. It would sound affectionate and slightly old-fashioned rather than wrong — but it is not what you would call your own mother if she is southern-raised.</td></tr>
+      <tr><td class="han">爸 / 爸爸</td><td class="py">bà / bàba</td><td>The default for a father you address as a father.</td></tr>
+      <tr><td class="han">叔叔</td><td class="py">shūshu</td><td>Also used for a step-father or a mother's partner where "dad" isn't the relationship. Neither choice is more correct — this is about your relationship, not about Chinese.</td></tr>
+    </tbody>
+  </table>
+  <p>The formal word for step-father, 继父 <span class="py">jìfù</span>, is a term you would write on a form, not one you would ever say to his face. Whatever you call him in English is the better guide to which of the two above to use.</p>
+
+  <h3>Grandparents — the side matters</h3>
+  <table>
+    <thead><tr><th>Term</th><th>Pinyin</th><th>Who</th></tr></thead>
+    <tbody>
+      <tr><td class="han">爷爷 / 奶奶</td><td class="py">yéye / nǎinai</td><td>Father's father / father's mother</td></tr>
+      <tr><td class="han">外公 / 外婆</td><td class="py">wàigōng / wàipó</td><td>Mother's father / mother's mother — the southern forms, and so the likely ones on your mother's side</td></tr>
+      <tr><td class="han">姥爷 / 姥姥</td><td class="py">lǎoye / lǎolao</td><td>The same two people, northern forms. What your step-father's family would say</td></tr>
+    </tbody>
+  </table>
+  <p>Your family straddles that north/south line, so both sets may be in use around you for different people. Neither is more correct; follow whichever your family already uses.</p>
+
+  <h3>Aunts and uncles</h3>
+  <table>
+    <thead><tr><th>Term</th><th>Pinyin</th><th>Who</th></tr></thead>
+    <tbody>
+      <tr><td class="han">舅舅</td><td class="py">jiùjiu</td><td>Mother's brother</td></tr>
+      <tr><td class="han">舅妈</td><td class="py">jiùmā</td><td>Mother's brother's wife</td></tr>
+      <tr><td class="han">姨妈 / 阿姨</td><td class="py">yímā / āyí</td><td>Mother's sister</td></tr>
+      <tr><td class="han">姨父</td><td class="py">yífu</td><td>Mother's sister's husband</td></tr>
+      <tr><td class="han">伯伯</td><td class="py">bóbo</td><td>Father's older brother</td></tr>
+      <tr><td class="han">叔叔</td><td class="py">shūshu</td><td>Father's younger brother</td></tr>
+      <tr><td class="han">姑姑</td><td class="py">gūgu</td><td>Father's sister</td></tr>
+    </tbody>
+  </table>
+  <p>Your aunt and uncle in Meicheng are on your mother's side, so 舅舅 and 舅妈, or 姨妈 and 姨父, depending on which of them is the blood relative. If you have been calling them something else your whole life, that is what they are — an inherited family term outranks a table.</p>
+
+  <div class="gate">
+    <h4>Checkpoint</h4>
+    <ol>
+      <li>Say aloud what you would call your mother's brother. (舅舅 jiùjiu.) Then his wife. (舅妈 jiùmā.)</li>
+      <li>Say aloud the two different words for your maternal grandmother, and which side of the country each comes from. (外婆 wàipó, southern; 姥姥 lǎolao, northern.)</li>
+      <li>Decide, and say out loud, what you are going to call your step-father in Chinese. There is no correct answer and it is worth having settled before the conversation rather than during it.</li>
+    </ol>
+    <p class="note">Item 3 is the one that will otherwise ambush you mid-sentence. Two seconds of deciding now.</p>
+  </div>
+</section>
+
+<section id="plan">
+  <h2>Who to practise with, in what order</h2>
+
+  <div class="verdict">
+    <p><strong>1. Your step-father.</strong> Closest to the standard you are learning, and Northeastern speech has a reputation for volubility that works in your favour — you want a partner who keeps talking. Use the Part E openers on him first.</p>
+    <p><strong>2. Your mother.</strong> Her Mandarin is fully accessible to you; the substrate features above just make her a slightly less clean phonetic model. As a conversation partner she is likely the more patient one, and she is the one who can tell you which of your own sounds came from her.</p>
+    <p><strong>3. Your aunt and uncle — later, and with different expectations.</strong> If they speak local Mandarin heavily coloured by Jiande dialect, you will follow much less of it, and if they switch into the dialect proper you will follow none. Neither of those is a progress signal. Use your repair phrases and let them slow down for you.</p>
+  </div>
+
+  <p>One concrete thing worth doing early, because it costs one conversation and saves months: ask your mother which sounds of yours came from her. Something like 我的发音有没有浙江口音？ <span class="py">Wǒ de fāyīn yǒu méiyǒu Zhèjiāng kǒuyīn?</span> — "does my pronunciation have a Zhejiang accent?" She will know instantly, and it is a question she will probably enjoy.</p>
+</section>
+
+<section id="unknowns">
+  <h2>What I don't know</h2>
+  <div class="uncertain">
+    <h4>Flagged rather than guessed</h4>
+    <p><strong>How much dialect your mother actually retains.</strong> Someone who left for university in Beijing may speak the home dialect fluently with her siblings and barely at all otherwise. That affects nothing about your Mandarin plan, but it affects what is available to you if you ever want more.</p>
+    <p><strong>Whether your aunt and uncle speak Jiande dialect or accented Mandarin</strong> — "sound like locals" could mean either. The first is inaccessible to you; the second becomes accessible with practice. Worth finding out, because the two lead to very different expectations.</p>
+    <p><strong>Which specific features are in your own speech.</strong> Nothing in this document can tell you that. Your mother can, in about thirty seconds.</p>
+    <p><strong>The Jiande dialect classification itself.</strong> Wuzhou Wu versus a Jinqu grouping is unsettled in the literature. It does not change anything practical — it is Southern Wu either way — but I would rather flag the disagreement than present one label as settled.</p>
+  </div>
+</section>
+
+<footer>
+  <p>Mandarin Field Manual, Addendum · built 1 September 2026 · companion to Phase 0 and Phase 1 · offline, single file, no dependencies</p>
+  <p>Regional and family usage always outranks this document. Where your family already has a word for something, that word is correct for your family.</p>
+</footer>
+
+</div>
+
+<script id="py-layer-script">
+(function(){
+  var WORDS = {"这个":"zhège","那个":"nàge","这些":"zhèxiē","那些":"nàxiē","几个":"jǐ ge","觉得": "juéde", "睡觉": "shuìjiào", "便宜": "piányi", "意思": "yìsi", "休息": "xiūxi", "朋友": "péngyou", "喜欢": "xǐhuan", "时候": "shíhou", "什么": "shénme", "怎么": "zěnme", "妈妈": "māma", "爸爸": "bàba", "姐姐": "jiějie", "哥哥": "gēge", "弟弟": "dìdi", "妹妹": "mèimei", "爷爷": "yéye", "奶奶": "nǎinai", "姥姥": "lǎolao", "姥爷": "lǎoye", "舅舅": "jiùjiu", "叔叔": "shūshu", "姑姑": "gūgu", "伯伯": "bóbo", "孩子": "háizi", "儿子": "érzi", "女儿": "nǚ'ér", "房子": "fángzi", "桌子": "zhuōzi", "椅子": "yǐzi", "明白": "míngbai", "稀罕": "xīhan", "得瑟": "dèse", "埋汰": "máitai", "唠嗑": "làokē", "嘎哈": "gáhá", "干哈": "gànhá", "医生": "yīshēng", "一点儿": "yìdiǎnr", "有点儿": "yǒudiǎnr", "一下": "yíxià", "一遍": "yíbiàn", "一个": "yíge", "一样": "yíyàng", "一天": "yìtiān", "一年": "yìnián", "一起": "yìqǐ", "一边": "yìbiān", "一会儿": "yíhuìr", "不是": "búshì", "不去": "búqù", "不太": "bútài", "不要": "búyào", "不对": "búduì", "不会": "búhuì", "不用": "búyòng", "对不起": "duìbuqǐ", "没关系": "méiguānxi", "关系": "guānxi", "谢谢": "xièxie", "东北": "Dōngběi", "中国": "Zhōngguó", "中文": "Zhōngwén", "北京": "Běijīng", "浙江": "Zhèjiāng", "沈阳": "Shěnyáng", "辽宁": "Liáoníng", "建德": "Jiàndé", "梅城": "Méichéng", "新安江": "Xīn'ānjiāng", "婺州": "Wùzhōu", "交通": "jiāotōng", "大学": "dàxué", "汉语": "Hànyǔ", "知道": "zhīdào", "电视": "diànshì", "电话": "diànhuà", "电脑": "diànnǎo", "好玩儿": "hǎowánr", "味儿": "wèir", "这儿": "zhèr", "哪儿": "nǎr", "多少": "duōshao", "因为": "yīnwèi", "为什么": "wèishénme", "干什么": "gàn shénme", "地方": "dìfang", "发音": "fāyīn", "变调": "biàndiào", "声调": "shēngdiào", "量词": "liàngcí", "过得": "guòde", "结果": "jiéguǒ", "还好": "háihǎo", "东西": "dōngxi", "认识": "rènshi", "先生": "xiānsheng", "学生": "xuésheng", "衣服": "yīfu", "我们": "wǒmen", "你们": "nǐmen", "他们": "tāmen", "咱们": "zánmen", "水果": "shuǐguǒ", "苹果": "píngguǒ", "鸡蛋": "jīdàn", "早饭": "zǎofàn", "午饭": "wǔfàn", "晚饭": "wǎnfàn", "身体": "shēntǐ", "高兴": "gāoxìng", "开心": "kāixīn", "难过": "nánguò", "担心": "dānxīn", "希望": "xīwàng", "天气": "tiānqì", "下雨": "xià yǔ", "下雪": "xià xuě", "今天": "jīntiān", "昨天": "zuótiān", "明天": "míngtiān", "早上": "zǎoshang", "中午": "zhōngwǔ", "晚上": "wǎnshang", "现在": "xiànzài", "以前": "yǐqián", "以后": "yǐhòu", "最近": "zuìjìn", "星期": "xīngqī", "时间": "shíjiān", "常常": "chángcháng", "已经": "yǐjīng", "工作": "gōngzuò", "打电话": "dǎ diànhuà", "回家": "huí jiā", "出去": "chūqù", "进来": "jìnlái", "开车": "kāichē", "走路": "zǒulù", "眼睛": "yǎnjing", "号码": "hàomǎ", "生病": "shēngbìng", "医院": "yīyuàn", "小心": "xiǎoxīn", "保重": "bǎozhòng", "家人": "jiārén", "父母": "fùmǔ", "外公": "wàigōng", "外婆": "wàipó", "阿姨": "āyí", "舅妈": "jiùmā", "姨妈": "yímā", "姨父": "yífu", "继父": "jìfù", "学校": "xuéxiào", "学习": "xuéxí", "复习": "fùxí", "老师": "lǎoshī", "起床": "qǐchuáng", "考试": "kǎoshì", "汽车": "qìchē", "再见": "zàijiàn", "啤酒": "píjiǔ", "做饭": "zuòfàn", "吃饭": "chīfàn", "好吃": "hǎochī", "好喝": "hǎohē", "怎么样": "zěnmeyàng", "哪里": "nǎlǐ", "有时候": "yǒu shíhou", "除了": "chúle", "以外": "yǐwài", "虽然": "suīrán", "但是": "dànshì", "所以": "suǒyǐ", "越来越": "yuè lái yuè", "快要": "kuàiyào", "就要": "jiùyào", "作业": "zuòyè", "写完": "xiěwán", "手机": "shǒujī", "拿走": "názǒu", "飞机": "fēijī", "火车": "huǒchē", "冷": "lěng", "好不好": "hǎo bu hǎo", "要不要": "yào bu yào", "听不懂": "tīng bu dǒng", "看电视": "kàn diànshì", "外面": "wàimiàn", "真": "zhēn", "形声": "xíngshēng", "声旁": "shēngpáng", "口音": "kǒuyīn", "北方": "běifāng", "南方": "nánfāng", "军人": "jūnrén", "名字": "míngzi", "东北话": "Dōngběihuà"};
+  var CHARS = {"一": "yī", "七": "qī", "上": "shàng", "下": "xià", "不": "bù", "业": "yè", "东": "dōng", "丝": "sī", "两": "liǎng", "个": "gè", "中": "zhōng", "为": "wèi", "主": "zhǔ", "么": "me", "也": "yě", "习": "xí", "买": "mǎi", "了": "le", "二": "èr", "人": "rén", "亻": "rén", "什": "shén", "今": "jīn", "他": "tā", "以": "yǐ", "们": "men", "件": "jiàn", "休": "xiū", "会": "huì", "伯": "bó", "但": "dàn", "位": "wèi", "住": "zhù", "体": "tǐ", "作": "zuò", "你": "nǐ", "便": "biàn", "保": "bǎo", "候": "hòu", "做": "zuò", "儿": "ér", "公": "gōng", "六": "liù", "关": "guān", "兴": "xìng", "再": "zài", "写": "xiě", "冷": "lěng", "几": "jǐ", "出": "chū", "刀": "dāo", "刂": "dāo", "别": "bié", "到": "dào", "刻": "kè", "前": "qián", "剩": "shèng", "力": "lì", "功": "gōng", "加": "jiā", "动": "dòng", "助": "zhù", "包": "bāo", "北": "běi", "医": "yī", "十": "shí", "午": "wǔ", "卖": "mài", "去": "qù", "友": "yǒu", "双": "shuāng", "发": "fā", "叔": "shū", "变": "biàn", "口": "kǒu", "只": "zhǐ", "叫": "jiào", "可": "kě", "号": "hào", "吃": "chī", "名": "míng", "后": "hòu", "吗": "ma", "吧": "ba", "听": "tīng", "呢": "ne", "味": "wèi", "咋": "zǎ", "咱": "zán", "哈": "hā", "哥": "gē", "哪": "nǎ", "唠": "lào", "唱": "chàng", "啤": "pí", "喜": "xǐ", "喝": "hē", "嗑": "kē", "嘎": "gā", "四": "sì", "回": "huí", "因": "yīn", "国": "guó", "土": "tǔ", "在": "zài", "地": "dì", "场": "chǎng", "坐": "zuò", "块": "kuài", "埋": "mái", "城": "chéng", "声": "shēng", "复": "fù", "外": "wài", "多": "duō", "天": "tiān", "太": "tài", "女": "nǚ", "奶": "nǎi", "她": "tā", "好": "hǎo", "妈": "mā", "妹": "mèi", "姐": "jiě", "姑": "gū", "姓": "xìng", "姥": "lǎo", "姨": "yí", "娘": "niáng", "婆": "pó", "婺": "wù", "子": "zi", "字": "zì", "学": "xué", "孩": "hái", "宀": "mián", "宁": "níng", "安": "ān", "完": "wán", "宜": "yí", "客": "kè", "室": "shì", "家": "jiā", "容": "róng", "宾": "bīn", "对": "duì", "小": "xiǎo", "少": "shǎo", "就": "jiù", "山": "shān", "州": "zhōu", "工": "gōng", "已": "yǐ", "巴": "bā", "师": "shī", "希": "xī", "帮": "bāng", "常": "cháng", "干": "gàn", "年": "nián", "床": "chuáng", "建": "jiàn", "开": "kāi", "弟": "dì", "张": "zhāng", "形": "xíng", "彪": "biāo", "很": "hěn", "得": "de", "德": "dé", "心": "xīn", "忄": "xīn", "忙": "máng", "快": "kuài", "怎": "zěn", "怕": "pà", "思": "sī", "性": "xìng", "息": "xi", "情": "qíng", "想": "xiǎng", "意": "yì", "慢": "màn", "懂": "dǒng", "我": "wǒ", "房": "fáng", "所": "suǒ", "手": "shǒu", "扌": "shǒu", "打": "dǎ", "找": "zhǎo", "把": "bǎ", "报": "bào", "抱": "bào", "担": "dān", "拿": "ná", "提": "tí", "数": "shù", "整": "zhěng", "文": "wén", "新": "xīn", "方": "fāng", "旁": "páng", "日": "rì", "早": "zǎo", "时": "shí", "明": "míng", "星": "xīng", "春": "chūn", "昨": "zuó", "是": "shì", "晚": "wǎn", "晴": "qíng", "最": "zuì", "月": "yuè", "有": "yǒu", "朋": "péng", "服": "fú", "望": "wàng", "期": "qī", "木": "mù", "本": "běn", "机": "jī", "条": "tiáo", "来": "lái", "杯": "bēi", "林": "lín", "果": "guǒ", "树": "shù", "校": "xiào", "样": "yàng", "桌": "zhuō", "梅": "méi", "椅": "yǐ", "欢": "huān", "母": "mǔ", "比": "bǐ", "气": "qì", "水": "shuǐ", "氵": "shuǐ", "汉": "hàn", "江": "jiāng", "汤": "tāng", "汰": "tài", "汽": "qì", "沈": "shěn", "没": "méi", "河": "hé", "法": "fǎ", "泡": "pào", "洗": "xǐ", "浙": "zhè", "清": "qīng", "火": "huǒ", "灬": "huǒ", "炒": "chǎo", "炮": "pào", "点": "diǎn", "烧": "shāo", "热": "rè", "然": "rán", "照": "zhào", "爪": "zhǎo", "爬": "pá", "父": "fù", "爷": "yé", "爸": "bà", "玩": "wán", "现": "xiàn", "瑟": "sè", "生": "shēng", "用": "yòng", "电": "diàn", "疒": "nè", "疲": "pí", "疼": "téng", "病": "bìng", "痛": "tòng", "白": "bái", "的": "de", "目": "mù", "看": "kàn", "真": "zhēn", "眼": "yǎn", "睛": "jīng", "睡": "shuì", "知": "zhī", "石": "shí", "码": "mǎ", "硬": "yìng", "碗": "wǎn", "稀": "xī", "穴": "xué", "空": "kōng", "穿": "chuān", "等": "děng", "系": "xì", "累": "lèi", "纟": "sī", "红": "hóng", "纸": "zhǐ", "细": "xì", "经": "jīng", "结": "jié", "给": "gěi", "继": "jì", "罕": "hǎn", "老": "lǎo", "考": "kǎo", "耳": "ěr", "聊": "liáo", "职": "zhí", "肉": "ròu", "肚": "dù", "胖": "pàng", "能": "néng", "脑": "nǎo", "脸": "liǎn", "腿": "tuǐ", "舅": "jiù", "艹": "cǎo", "花": "huā", "苹": "píng", "茶": "chá", "草": "cǎo", "药": "yào", "菜": "cài", "虫": "chóng", "虽": "suī", "虾": "xiā", "蚊": "wén", "蛇": "shé", "蛋": "dàn", "行": "xíng", "被": "bèi", "要": "yào", "见": "jiàn", "视": "shì", "觉": "jué", "言": "yán", "讠": "yán", "词": "cí", "试": "shì", "话": "huà", "语": "yǔ", "说": "shuō", "请": "qǐng", "谁": "shéi", "调": "diào", "谢": "xiè", "贝": "bèi", "财": "cái", "贵": "guì", "费": "fèi", "贼": "zéi", "赢": "yíng", "走": "zǒu", "起": "qǐ", "越": "yuè", "足": "zú", "跑": "pǎo", "跟": "gēn", "路": "lù", "跳": "tiào", "身": "shēn", "车": "chē", "转": "zhuǎn", "轻": "qīng", "较": "jiào", "辆": "liàng", "辶": "chuò", "边": "biān", "辽": "liáo", "过": "guò", "近": "jìn", "还": "hái", "这": "zhè", "进": "jìn", "远": "yuǎn", "送": "sòng", "遍": "biàn", "道": "dào", "都": "dōu", "酒": "jiǔ", "里": "lǐ", "重": "zhòng", "量": "liàng", "金": "jīn", "钅": "jīn", "钟": "zhōng", "钱": "qián", "铁": "tiě", "银": "yín", "门": "mén", "问": "wèn", "间": "jiān", "闹": "nào", "闻": "wén", "阳": "yáng", "阿": "ā", "院": "yuàn", "除": "chú", "难": "nán", "雨": "yǔ", "雪": "xuě", "零": "líng", "雷": "léi", "需": "xū", "青": "qīng", "面": "miàn", "音": "yīn", "飞": "fēi", "食": "shí", "饣": "shí", "饭": "fàn", "饮": "yǐn", "饱": "bǎo", "饿": "è", "馆": "guǎn", "马": "mǎ", "骂": "mà", "高": "gāo", "鱼": "yú", "鸡": "jī", "货": "huò", "取": "qǔ", "聪": "cōng", "𧾷": "zú"};
+  var MAXW = 3;
+  function pinyinFor(run){
+    var out=[],i=0;
+    while(i<run.length){
+      var hit=null;
+      for(var L=Math.min(MAXW,run.length-i);L>1;L--){
+        var w=run.substr(i,L);
+        if(WORDS[w]){hit=[L,WORDS[w]];break;}
+      }
+      if(hit){out.push(hit[1]);i+=hit[0];}
+      else{var cp=run.codePointAt(i);var ch=String.fromCodePoint(cp);out.push(CHARS[ch]||"?");i+=ch.length;}
+    }
+    return out.join(" ");
+  }
+  var HAN=/\p{Script=Han}+/gu;
+  function wrap(root){
+    var walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+      var p=n.parentNode;
+      while(p&&p!==root){
+        if(p.nodeName==="SCRIPT"||p.nodeName==="STYLE"||p.id==="quizbox"||p.classList.contains("zh"))return NodeFilter.FILTER_REJECT;
+        p=p.parentNode;
+      }
+      return HAN.test(n.nodeValue)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
+    }});
+    var nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+    nodes.forEach(function(n){
+      var text=n.nodeValue,frag=document.createDocumentFragment(),last=0,m;
+      HAN.lastIndex=0;
+      while((m=HAN.exec(text))){
+        if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));
+        var s=document.createElement("span");
+        s.className="zh";s.setAttribute("data-py",pinyinFor(m[0]));s.textContent=m[0];
+        frag.appendChild(s);last=m.index+m[0].length;
+      }
+      if(last<text.length)frag.appendChild(document.createTextNode(text.slice(last)));
+      n.parentNode.replaceChild(frag,n);
+    });
+  }
+  var root=document.querySelector("div.wrap");
+  if(root)wrap(root);
+
+  // tap-to-toggle for touch (and works with mouse too)
+  document.addEventListener("click",function(e){
+    var t=e.target.closest(".zh");
+    var open=document.querySelectorAll(".zh.on");
+    for(var i=0;i<open.length;i++){if(open[i]!==t)open[i].classList.remove("on");}
+    if(t&&!document.body.classList.contains("py-off"))t.classList.toggle("on");
+  });
+
+  // mode toggle in the nav: hover → always → off
+  var modes=[["hover","Pinyin: hover / tap"],["always","Pinyin: always"],["off","Pinyin: off"]];
+  var mi=0;
+  var nav=document.querySelector("nav ul");
+  if(nav){
+    var li=document.createElement("li");li.className="pytoggle";
+    var b=document.createElement("button");b.type="button";b.textContent=modes[0][1];
+    b.setAttribute("aria-label","Cycle pinyin display mode");
+    b.addEventListener("click",function(){
+      mi=(mi+1)%modes.length;
+      document.body.classList.remove("py-always","py-off");
+      if(modes[mi][0]==="always")document.body.classList.add("py-always");
+      if(modes[mi][0]==="off")document.body.classList.add("py-off");
+      b.textContent=modes[mi][1];
+      var open=document.querySelectorAll(".zh.on");for(var i=0;i<open.length;i++)open[i].classList.remove("on");
+    });
+    li.appendChild(b);nav.appendChild(li);
+  }
+})();
+</script>
+
+</body>
+</html>

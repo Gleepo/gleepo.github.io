@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mandarin Field Manual — Phase 1: Reading by System</title>
+<style>
+:root{
+  --sea:#0d4351;
+  --teal:#177d8c;
+  --aqua:#3fb8c4;
+  --foam:#e6f5f7;
+  --sand:#f4ecd9;
+  --coral:#d9614a;
+  --ink:#10242a;
+  --muted:#4f6b72;
+  --paper:#fbf8f1;
+  --line:#c9dde1;
+  --font-display:"Carter One","Trebuchet MS",Verdana,sans-serif;
+  --font-body:"Atkinson Hyperlegible","Atkinson Hyperlegible Next",-apple-system,"Segoe UI",Helvetica,sans-serif;
+  --font-han:"Noto Sans SC","Noto Sans CJK SC","PingFang SC","Hiragino Sans GB","Heiti SC","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:17px;
+  line-height:1.65;
+}
+.wrap{max-width:840px;margin:0 auto;padding:0 20px 100px}
+p,li{max-width:68ch}
+
+/* ---------- masthead ---------- */
+.masthead{
+  background:var(--sea);
+  color:var(--foam);
+  padding:44px 0 36px;
+  border-bottom:6px solid var(--aqua);
+}
+.masthead .wrap{padding-bottom:0}
+.masthead h1{
+  font-family:var(--font-display);
+  font-size:2.45rem;
+  line-height:1.15;
+  margin:0 0 6px;
+  color:#fff;
+}
+.masthead .sub{color:var(--aqua);margin:0 0 22px;font-size:1.05rem}
+.stamp{
+  display:inline-block;
+  font-family:var(--font-han);
+  font-size:3.6rem;
+  line-height:1;
+  color:var(--sand);
+  border:3px solid var(--coral);
+  border-radius:10px;
+  padding:10px 16px;
+  margin-bottom:18px;
+}
+.masthead .gloss{color:var(--foam);opacity:.85;font-size:.95rem;margin:0}
+
+/* ---------- nav ---------- */
+nav{
+  position:sticky;top:0;z-index:20;
+  background:var(--teal);
+  border-bottom:3px solid var(--sea);
+}
+nav ul{
+  max-width:840px;margin:0 auto;padding:0 12px;
+  list-style:none;display:flex;flex-wrap:wrap;gap:2px;
+}
+nav a{
+  display:block;
+  min-height:44px;line-height:44px;
+  padding:0 14px;
+  color:#fff;text-decoration:none;
+  font-size:.92rem;
+}
+nav a:hover,nav a:focus{background:var(--sea);outline:none}
+nav a:focus-visible{outline:3px solid var(--sand);outline-offset:-3px}
+
+/* ---------- sections ---------- */
+section{padding-top:38px}
+h2{
+  font-family:var(--font-display);
+  font-size:1.75rem;
+  color:var(--sea);
+  margin:0 0 4px;
+  padding-bottom:8px;
+  border-bottom:2px solid var(--line);
+}
+h3{font-family:var(--font-display);font-size:1.2rem;color:var(--teal);margin:28px 0 6px}
+h4{font-size:1rem;margin:18px 0 4px;color:var(--sea)}
+
+.why{
+  background:var(--foam);
+  border-left:6px solid var(--teal);
+  padding:14px 18px;
+  margin:18px 0;
+  border-radius:0 8px 8px 0;
+}
+.why h4{margin-top:0;color:var(--teal)}
+.why p:last-child{margin-bottom:0}
+
+.gate{
+  background:#fdf1ee;
+  border:2px solid var(--coral);
+  border-radius:10px;
+  padding:16px 18px;
+  margin:30px 0 10px;
+}
+.gate h4{margin:0 0 8px;color:var(--coral);font-family:var(--font-display);font-size:1.1rem}
+.gate ol{margin:0;padding-left:22px}
+.gate li{margin-bottom:6px}
+.gate .note{margin:10px 0 0;font-size:.9rem;color:var(--muted)}
+
+.look{
+  font-size:.9rem;
+  color:var(--muted);
+  border-left:3px solid var(--aqua);
+  padding-left:12px;
+  margin:12px 0;
+}
+
+/* ---------- radical table ---------- */
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:.95rem}
+th{
+  background:var(--sea);color:#fff;text-align:left;
+  padding:10px 12px;font-weight:normal;
+}
+td{border-bottom:1px solid var(--line);padding:10px 12px;vertical-align:middle}
+tr:nth-child(even) td{background:#f5f1e6}
+.han{font-family:var(--font-han);font-size:1.9rem;line-height:1.2}
+td.han{width:64px;text-align:center;color:var(--sea)}
+.py{color:var(--teal);font-style:italic}
+
+/* ---------- phonetic family trees ---------- */
+.family{
+  border:2px solid var(--line);
+  border-radius:12px;
+  padding:18px;
+  margin:22px 0;
+  background:#fff;
+}
+.family-head{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.family-head .seed{
+  font-family:var(--font-han);
+  font-size:3.4rem;line-height:1;
+  color:#fff;background:var(--teal);
+  border-radius:12px;padding:10px 16px;
+}
+.family-head .seed-info strong{display:block;font-size:1.2rem;color:var(--sea)}
+.family-head .seed-info span{color:var(--muted);font-size:.95rem}
+.branches{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.branch{
+  border:1px solid var(--line);
+  border-left:5px solid var(--aqua);
+  border-radius:8px;
+  padding:10px 12px;
+  background:var(--paper);
+}
+.branch .han{color:var(--sea);display:block}
+.branch .rd{font-size:.85rem;color:var(--muted);display:block;margin-top:2px}
+.branch .mn{font-size:.95rem;display:block}
+
+/* ---------- grammar frames ---------- */
+.frame{
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:14px 16px;
+  margin:14px 0;
+  background:#fff;
+}
+.frame .pattern{
+  font-family:var(--font-han);
+  font-size:1.5rem;
+  color:var(--sea);
+  display:block;
+  margin-bottom:2px;
+}
+.frame .pinyin{color:var(--teal);font-style:italic;font-size:.95rem;display:block}
+.frame .use{margin:8px 0 8px;font-size:.95rem}
+.frame .eg{
+  background:var(--sand);
+  border-radius:6px;
+  padding:8px 12px;
+  font-size:.95rem;
+}
+.frame .eg .han{font-size:1.25rem;display:block}
+.frame .eg .tr{color:var(--muted);font-size:.9rem}
+
+/* ---------- tone grid ---------- */
+.tonegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:16px 0}
+.tone{
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:10px;
+  background:#fff;
+  text-align:center;
+}
+.tone .combo{
+  display:inline-block;
+  background:var(--sea);color:#fff;
+  border-radius:20px;padding:2px 12px;
+  font-size:.8rem;margin-bottom:6px;
+}
+.tone .han{color:var(--sea)}
+.tone .rd{color:var(--teal);font-style:italic;font-size:.95rem;display:block}
+.tone .mn{color:var(--muted);font-size:.85rem;display:block}
+.tone.hard{border-color:var(--coral);border-width:2px}
+.tone.hard .combo{background:var(--coral)}
+
+/* ---------- quiz ---------- */
+#quizbox{
+  border:3px solid var(--teal);
+  border-radius:14px;
+  padding:20px;
+  background:#fff;
+  margin-top:18px;
+}
+#qprompt{font-family:var(--font-han);font-size:4.6rem;line-height:1.1;text-align:center;color:var(--sea);margin:6px 0 4px}
+#qtask{text-align:center;color:var(--muted);margin:0 0 18px;font-size:.95rem}
+.opts{display:grid;gap:10px}
+.opt{
+  min-height:52px;
+  text-align:left;
+  font-family:var(--font-body);
+  font-size:1rem;
+  background:var(--foam);
+  border:2px solid var(--line);
+  border-radius:10px;
+  padding:12px 16px;
+  cursor:pointer;
+  color:var(--ink);
+}
+.opt:hover:not(:disabled){border-color:var(--teal)}
+.opt:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+.opt.right{background:#dff0e4;border-color:#2e8b57}
+.opt.wrong{background:#fbe3de;border-color:var(--coral)}
+.opt:disabled{cursor:default}
+#qfeedback{margin:16px 0 0;min-height:26px;font-size:.98rem}
+#qfeedback .han{font-size:1.4rem}
+.quizbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:16px}
+button.act{
+  min-height:44px;
+  padding:0 20px;
+  border-radius:8px;
+  border:none;
+  background:var(--teal);color:#fff;
+  font-family:var(--font-body);font-size:1rem;
+  cursor:pointer;
+}
+button.act:hover{background:var(--sea)}
+button.act:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+button.act.ghost{background:transparent;color:var(--teal);border:2px solid var(--teal)}
+#score{color:var(--muted);font-size:.95rem}
+
+footer{
+  margin-top:60px;padding-top:20px;
+  border-top:2px solid var(--line);
+  color:var(--muted);font-size:.9rem;
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{
+  nav,#quizbox,.noprint{display:none}
+  body{background:#fff;font-size:11pt}
+  .masthead{background:#fff;color:#000;border-bottom:2px solid #000}
+  .masthead h1,.masthead .sub,.masthead .gloss{color:#000}
+  .stamp{color:#000;border-color:#000}
+  section{page-break-inside:avoid}
+}
+</style>
+
+<style id="py-layer">
+.zh{position:relative;cursor:help;border-bottom:1px dotted transparent;transition:border-color .12s}
+.zh:hover,.zh.on{border-bottom-color:var(--aqua)}
+.zh::after{
+  content:attr(data-py);
+  position:absolute;left:0;bottom:calc(100% + 4px);
+  background:var(--sea);color:#fff;
+  font-family:var(--font-body);font-style:normal;font-weight:normal;
+  font-size:.8rem;line-height:1.3;letter-spacing:0;
+  padding:4px 9px;border-radius:6px;white-space:nowrap;
+  box-shadow:0 2px 8px rgba(13,67,81,.25);
+  display:none;z-index:30;pointer-events:none;
+}
+.zh:hover::after,.zh.on::after{display:block}
+body.py-always .zh::after{
+  display:inline;position:static;background:none;color:var(--teal);
+  box-shadow:none;padding:0 0 0 .35em;font-size:.72em;white-space:normal;
+}
+body.py-always .zh{border-bottom-color:transparent}
+body.py-off .zh::after{display:none!important}
+body.py-off .zh{cursor:auto;border-bottom-color:transparent}
+.pytoggle button{
+  min-height:44px;height:44px;padding:0 14px;margin:0;
+  background:var(--sea);color:#fff;border:none;
+  font-family:var(--font-body);font-size:.92rem;cursor:pointer;
+}
+.pytoggle button:hover{background:var(--coral)}
+.pytoggle button:focus-visible{outline:3px solid var(--sand);outline-offset:-3px}
+@media print{.zh::after{display:none!important}.pytoggle{display:none}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="stamp">形声</div>
+    <h1>Mandarin Field Manual</h1>
+    <p class="sub">Phase 1 — Reading by system, not by memorising</p>
+    <p class="gloss">xíngshēng — "form and sound." The principle this whole manual rests on.</p>
+  </div>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#use">How to use</a></li>
+    <li><a href="#why">The idea</a></li>
+    <li><a href="#radicals">A · Radicals</a></li>
+    <li><a href="#families">B · Sound families</a></li>
+    <li><a href="#grammar">C · Frames</a></li>
+    <li><a href="#tones">D · Tone pairs</a></li>
+    <li><a href="#quiz">E · Quiz</a></li>
+  </ul>
+</nav>
+
+<div class="wrap">
+
+<section id="use">
+  <h2>How to use this</h2>
+  <p class="look">Pinyin layer: hover any Chinese text (or tap it, on iPad) to see its reading. The button at the right of the menu bar cycles between hover, always-shown, and off. Readings are dictionary tones — tone sandhi is not applied except in a few fixed phrases — so 你好 shows as nǐ hǎo, and Part D of the Phase 1 manual is where the spoken form lives.</p>
+
+  <p>Keep this open while you study. It is a reference card, not a memory test. <strong>Looking something up here is the intended behaviour, not a failure.</strong> Free recall will arrive on its own through repetition; nothing in this manual depends on you retrieving anything cold.</p>
+  <p>Work one part at a time. Each part ends with a checkpoint — a short, concrete, do-it-out-loud check. Run the checkpoint even if you feel finished. That is the point of it.</p>
+  <p><strong>If you get pulled away:</strong> note the part letter and the last checkpoint you passed. Stop there. Re-entry costs nothing because every part is self-contained.</p>
+  <p>Nothing here is saved anywhere. The quiz in Part E resets when you reload, by design — it is a warm-up, not a record.</p>
+</section>
+
+<section id="why">
+  <h2>The idea this manual is built on</h2>
+
+  <div class="why">
+    <h4>Why bother with a system at all</h4>
+    <p>Most learners at your level treat each new character as a separate item to memorise. That is roughly 3,000 unrelated things, and it is the hardest possible version of the task.</p>
+    <p>But Chinese characters are not arbitrary pictures. Around 80% of them are <strong>compounds</strong>: one part tells you roughly what the character <em>means</em>, and another part tells you roughly how it <em>sounds</em>. Once you can see the seam, a character stops being a shape and becomes a small sentence about itself.</p>
+    <p>The plain implication: learning about 30 meaning-parts and a few dozen sound-parts gives you partial access to thousands of characters you have never seen. That is a far better return than learning 200 more characters one at a time.</p>
+  </div>
+
+  <p>Take 清, 请, 情, 晴, 睛. Five different characters. Every one of them contains 青 (qīng), and every one of them is pronounced somewhere in the qing / jing neighbourhood. The left-hand part is what changes the meaning: water, speech, heart, sun, eye.</p>
+  <p>So 清 is <span class="py">qīng</span>, water + qing = clear. 请 is <span class="py">qǐng</span>, speech + qing = to request. 情 is <span class="py">qíng</span>, heart + qing = feeling. You did not memorise five things. You memorised one thing and five modifiers.</p>
+  <p>Part A gives you the meaning-parts. Part B gives you the sound-parts. Part C gives you the sentence frames to put them in. Part D is the speaking work, which is a separate skill and lives at the back on purpose.</p>
+</section>
+
+<section id="radicals">
+  <h2>Part A — The 29 radicals that do the most work</h2>
+
+  <div class="why">
+    <h4>Why these twenty-nine</h4>
+    <p>There are 214 traditional radicals. Most are rare. These twenty-nine are the ones that appear again and again in HSK 1–4 characters, and each one is a reliable clue to a whole semantic zone. When you meet an unknown character, finding the radical is the first move — it narrows the meaning before you know anything else.</p>
+  </div>
+
+  <p class="look">Reading the table: the first column is the radical <em>as it appears inside a character</em>, which is often a squashed version of a standalone character. Where the two differ, the standalone form is named in the third column. This is exactly the kind of small visual difference that is easy to skim past, so it is spelled out rather than left to be noticed.</p>
+
+  <h3>People, body, action</h3>
+  <table>
+    <thead><tr><th>Radical</th><th>Name</th><th>Zone of meaning</th><th>Seen in</th></tr></thead>
+    <tbody>
+      <tr><td class="han">亻</td><td>rén (squashed form of 人)</td><td>people, human roles</td><td class="han">你 他 们 住 什</td></tr>
+      <tr><td class="han">扌</td><td>shǒu (squashed form of 手, hand)</td><td>doing things with hands</td><td class="han">打 找 拿 提 报</td></tr>
+      <tr><td class="han">口</td><td>kǒu, mouth</td><td>speech, eating, sounds, particles</td><td class="han">吃 喝 叫 吗 唱</td></tr>
+      <tr><td class="han">心 / 忄</td><td>xīn, heart (忄 is the side form)</td><td>emotion, thought, will</td><td class="han">想 快 慢 怕 情</td></tr>
+      <tr><td class="han">足 / 𧾷</td><td>zú, foot</td><td>walking, running, kicking</td><td class="han">跑 跳 路 跟</td></tr>
+      <tr><td class="han">目</td><td>mù, eye</td><td>seeing, eyes</td><td class="han">看 眼 睛 睡</td></tr>
+      <tr><td class="han">耳</td><td>ěr, ear</td><td>hearing</td><td class="han">聊 职 取 聪</td></tr>
+      <tr><td class="han">女</td><td>nǚ, woman</td><td>female kin, older gendered vocabulary</td><td class="han">妈 姐 好 她 姓</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Nature and materials</h3>
+  <table>
+    <thead><tr><th>Radical</th><th>Name</th><th>Zone of meaning</th><th>Seen in</th></tr></thead>
+    <tbody>
+      <tr><td class="han">氵</td><td>shuǐ (squashed form of 水, water)</td><td>liquids, rivers, washing</td><td class="han">河 江 洗 汉 酒</td></tr>
+      <tr><td class="han">火 / 灬</td><td>huǒ, fire (灬 is the four-dot base form)</td><td>heat, cooking, burning</td><td class="han">烧 炒 热 照</td></tr>
+      <tr><td class="han">木</td><td>mù, tree/wood</td><td>trees, wooden objects</td><td class="han">树 林 桌 椅 校</td></tr>
+      <tr><td class="han">土</td><td>tǔ, earth</td><td>ground, places, building</td><td class="han">地 场 城 块</td></tr>
+      <tr><td class="han">石</td><td>shí, stone</td><td>stone, hardness, minerals</td><td class="han">码 硬 碗</td></tr>
+      <tr><td class="han">日</td><td>rì, sun/day</td><td>time, light, weather</td><td class="han">时 明 晚 早 晴</td></tr>
+      <tr><td class="han">月</td><td>yuè, moon — but often flesh (肉)</td><td>months, <em>or</em> body parts</td><td class="han">期 服 脸 胖 腿</td></tr>
+      <tr><td class="han">艹</td><td>cǎo, grass</td><td>plants, vegetables, herbs</td><td class="han">花 菜 茶 药 草</td></tr>
+      <tr><td class="han">雨</td><td>yǔ, rain</td><td>weather from the sky</td><td class="han">雪 雷 需 零</td></tr>
+      <tr><td class="han">虫</td><td>chóng, insect</td><td>insects, small creatures</td><td class="han">蚊 蛇 虾</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Made things, systems, abstractions</h3>
+  <table>
+    <thead><tr><th>Radical</th><th>Name</th><th>Zone of meaning</th><th>Seen in</th></tr></thead>
+    <tbody>
+      <tr><td class="han">讠</td><td>yán (squashed form of 言, speech)</td><td>speaking, language, saying</td><td class="han">说 话 请 谢 语</td></tr>
+      <tr><td class="han">纟</td><td>sī (squashed form of 丝, silk)</td><td>thread, cloth, connection, colour</td><td class="han">红 给 经 纸 细</td></tr>
+      <tr><td class="han">饣</td><td>shí (squashed form of 食, food)</td><td>eating, meals, hunger</td><td class="han">饭 饿 饱 馆 饮</td></tr>
+      <tr><td class="han">钅</td><td>jīn (squashed form of 金, metal)</td><td>metal, money, tools</td><td class="han">钱 铁 银 钟</td></tr>
+      <tr><td class="han">辶</td><td>chuò, walking/road</td><td>movement, travel, arriving</td><td class="han">这 边 送 过 近</td></tr>
+      <tr><td class="han">宀</td><td>mián, roof</td><td>houses, indoors, shelter</td><td class="han">家 客 安 室 完</td></tr>
+      <tr><td class="han">门</td><td>mén, door</td><td>doors, gateways, openings</td><td class="han">问 间 闻 闹</td></tr>
+      <tr><td class="han">车</td><td>chē, vehicle</td><td>vehicles, transport</td><td class="han">轻 转 较 辆</td></tr>
+      <tr><td class="han">刂</td><td>dāo (side form of 刀, knife)</td><td>cutting, sharpness, division</td><td class="han">别 到 刻 剩</td></tr>
+      <tr><td class="han">力</td><td>lì, strength</td><td>effort, power, work</td><td class="han">动 功 加 助</td></tr>
+      <tr><td class="han">贝</td><td>bèi, cowrie shell (old money)</td><td>money, value, trade</td><td class="han">贵 货 费 财 赢</td></tr>
+      <tr><td class="han">疒</td><td>nè, sickness</td><td>illness, medicine, pain</td><td class="han">病 疼 痛 疲</td></tr>
+    </tbody>
+  </table>
+
+  <div class="why">
+    <h4>The one that will trip you</h4>
+    <p>月 is genuinely two radicals wearing the same shape. In 明 (bright) and 期 (period) it is the moon. In 脸 (face), 胖 (fat), 腿 (leg), 肚 (belly) it is 肉, flesh. If a character with 月 in it seems to be about the body, it is — you have not misread it.</p>
+  </div>
+
+  <div class="gate">
+    <h4>Checkpoint A</h4>
+    <ol>
+      <li>Cover the fourth column. Look at 药 and say out loud which zone of meaning its radical points to, then uncover and check. (Grass. It is a herbal thing. It means medicine.)</li>
+      <li>Do the same for 睡, 钱, and 病 — say the zone aloud before checking the table.</li>
+      <li>Say aloud, in one sentence, what 氵 and 讠 have in common structurally. If your answer mentions the <em>position</em> they sit in, you have it.</li>
+    </ol>
+    <p class="note">If any of those three failed, re-read the relevant table row before moving on. A failed check is the system working.</p>
+  </div>
+</section>
+
+<section id="families">
+  <h2>Part B — Sound families</h2>
+
+  <div class="why">
+    <h4>Why this is the highest-leverage part of the manual</h4>
+    <p>Radicals tell you meaning. Sound-parts (声旁, shēngpáng) tell you pronunciation, and almost nobody teaches them explicitly — which is why most learners at HSK 2–3 are still memorising pronunciations one at a time.</p>
+    <p>The rule is loose but real: if a character contains a component that is itself a character, that component is often carrying the sound. Tone frequently changes; the initial and final usually survive. Treat it as a strong hint, not a law.</p>
+  </div>
+
+  <p>Six families below. Each one is a single sound you already know, plus a set of radicals stapled onto it. The characters in each family cover a large slice of HSK 2–4.</p>
+
+  <div class="family">
+    <div class="family-head">
+      <div class="seed">青</div>
+      <div class="seed-info"><strong>qīng</strong><span>green/blue; young, fresh</span></div>
+    </div>
+    <div class="branches">
+      <div class="branch"><span class="han">清</span><span class="rd">qīng · water 氵</span><span class="mn">clear, pure</span></div>
+      <div class="branch"><span class="han">请</span><span class="rd">qǐng · speech 讠</span><span class="mn">to request, please</span></div>
+      <div class="branch"><span class="han">情</span><span class="rd">qíng · heart 忄</span><span class="mn">feeling, situation</span></div>
+      <div class="branch"><span class="han">晴</span><span class="rd">qíng · sun 日</span><span class="mn">clear weather, sunny</span></div>
+      <div class="branch"><span class="han">睛</span><span class="rd">jīng · eye 目</span><span class="mn">eyeball (眼睛)</span></div>
+    </div>
+  </div>
+
+  <div class="family">
+    <div class="family-head">
+      <div class="seed">马</div>
+      <div class="seed-info"><strong>mǎ</strong><span>horse</span></div>
+    </div>
+    <div class="branches">
+      <div class="branch"><span class="han">妈</span><span class="rd">mā · woman 女</span><span class="mn">mother</span></div>
+      <div class="branch"><span class="han">吗</span><span class="rd">ma · mouth 口</span><span class="mn">question particle</span></div>
+      <div class="branch"><span class="han">骂</span><span class="rd">mà · two mouths 口口</span><span class="mn">to scold, curse</span></div>
+      <div class="branch"><span class="han">码</span><span class="rd">mǎ · stone 石</span><span class="mn">code, number (号码)</span></div>
+    </div>
+  </div>
+
+  <div class="family">
+    <div class="family-head">
+      <div class="seed">包</div>
+      <div class="seed-info"><strong>bāo</strong><span>to wrap; a bag, a bun</span></div>
+    </div>
+    <div class="branches">
+      <div class="branch"><span class="han">抱</span><span class="rd">bào · hand 扌</span><span class="mn">to hug, hold</span></div>
+      <div class="branch"><span class="han">跑</span><span class="rd">pǎo · foot 𧾷</span><span class="mn">to run</span></div>
+      <div class="branch"><span class="han">泡</span><span class="rd">pào · water 氵</span><span class="mn">bubble; to steep</span></div>
+      <div class="branch"><span class="han">饱</span><span class="rd">bǎo · food 饣</span><span class="mn">full, sated</span></div>
+      <div class="branch"><span class="han">炮</span><span class="rd">pào · fire 火</span><span class="mn">cannon, firecracker</span></div>
+    </div>
+  </div>
+
+  <div class="family">
+    <div class="family-head">
+      <div class="seed">工</div>
+      <div class="seed-info"><strong>gōng</strong><span>work, labour</span></div>
+    </div>
+    <div class="branches">
+      <div class="branch"><span class="han">江</span><span class="rd">jiāng · water 氵</span><span class="mn">large river</span></div>
+      <div class="branch"><span class="han">红</span><span class="rd">hóng · silk 纟</span><span class="mn">red</span></div>
+      <div class="branch"><span class="han">功</span><span class="rd">gōng · strength 力</span><span class="mn">merit, achievement</span></div>
+      <div class="branch"><span class="han">空</span><span class="rd">kōng · cave 穴</span><span class="mn">empty; sky</span></div>
+    </div>
+  </div>
+
+  <div class="family">
+    <div class="family-head">
+      <div class="seed">巴</div>
+      <div class="seed-info"><strong>bā</strong><span>to cling to (mostly a sound-carrier now)</span></div>
+    </div>
+    <div class="branches">
+      <div class="branch"><span class="han">爸</span><span class="rd">bà · father 父</span><span class="mn">dad</span></div>
+      <div class="branch"><span class="han">把</span><span class="rd">bǎ · hand 扌</span><span class="mn">to hold; the 把 construction</span></div>
+      <div class="branch"><span class="han">吧</span><span class="rd">ba · mouth 口</span><span class="mn">suggestion particle</span></div>
+      <div class="branch"><span class="han">爬</span><span class="rd">pá · claw 爪</span><span class="mn">to crawl, climb</span></div>
+    </div>
+  </div>
+
+  <div class="family">
+    <div class="family-head">
+      <div class="seed">生</div>
+      <div class="seed-info"><strong>shēng</strong><span>to be born, to live, raw</span></div>
+    </div>
+    <div class="branches">
+      <div class="branch"><span class="han">星</span><span class="rd">xīng · sun 日</span><span class="mn">star</span></div>
+      <div class="branch"><span class="han">性</span><span class="rd">xìng · heart 忄</span><span class="mn">nature, quality; sex</span></div>
+      <div class="branch"><span class="han">姓</span><span class="rd">xìng · woman 女</span><span class="mn">surname</span></div>
+    </div>
+  </div>
+
+  <div class="why">
+    <h4>Where the rule breaks, stated plainly</h4>
+    <p>生 → 星 xīng is a sound shift you would not predict from scratch (sheng to xing), and 青 → 睛 jīng is another. That is normal. The sound-part narrows the possibilities; it does not always name the answer. Use it to reduce a blank to a short list, and let context or a dictionary close the last step. A hint that works four times in five is still worth having.</p>
+  </div>
+
+  <div class="gate">
+    <h4>Checkpoint B</h4>
+    <ol>
+      <li>Look at 泡. Say out loud, before checking: which part carries the sound, which part carries the meaning, and what the meaning zone is. (包 carries sound; 氵 carries meaning; it is about liquid.)</li>
+      <li>Here is a character you were not taught above: 饭. Name its radical and its meaning zone out loud. Then check Part A. (Food radical 饣 — it means cooked rice, a meal.)</li>
+      <li>Say aloud one sentence explaining why 请 and 情 sound almost identical but mean unrelated things. If your sentence uses the words "same sound-part, different radical," you have it.</li>
+    </ol>
+    <p class="note">Item 2 is the real test — it asks you to use the system on something new rather than recall something taught. If it worked, Part B has done its job.</p>
+  </div>
+</section>
+
+<section id="grammar">
+  <h2>Part C — Twelve sentence frames</h2>
+
+  <div class="why">
+    <h4>Why frames rather than grammar rules</h4>
+    <p>At HSK 3 the bottleneck stops being vocabulary and becomes structure — you know the words but cannot assemble them past a simple sentence. Frames fix this faster than rules do, because a frame is a slot you drop known words into rather than a principle you have to apply under pressure.</p>
+    <p>Read each frame, then say one sentence of your own out loud using it. Out loud, not in your head — the whole point is to make the structure automatic before you need it.</p>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">虽然⋯⋯但是⋯⋯</span>
+    <span class="pinyin">suīrán … dànshì …</span>
+    <p class="use">Although X, (but) Y. Both halves stay in Chinese, unlike English where you drop one.</p>
+    <div class="eg"><span class="han">虽然很贵，但是我要买。</span><span class="tr">Although it's expensive, I want to buy it.</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">因为⋯⋯所以⋯⋯</span>
+    <span class="pinyin">yīnwèi … suǒyǐ …</span>
+    <p class="use">Because X, therefore Y. Same doubling as above. Cause first, result second — always.</p>
+    <div class="eg"><span class="han">因为下雨，所以我没去。</span><span class="tr">Because it rained, I didn't go.</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">一边⋯⋯一边⋯⋯</span>
+    <span class="pinyin">yìbiān … yìbiān …</span>
+    <p class="use">Doing two things simultaneously. Both slots take verbs.</p>
+    <div class="eg"><span class="han">他一边吃饭一边看电视。</span><span class="tr">He eats while watching TV.</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">越来越⋯⋯</span>
+    <span class="pinyin">yuè lái yuè …</span>
+    <p class="use">More and more X, over time. Takes an adjective or a verb of feeling.</p>
+    <div class="eg"><span class="han">天气越来越冷了。</span><span class="tr">The weather is getting colder and colder.</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">越⋯⋯越⋯⋯</span>
+    <span class="pinyin">yuè … yuè …</span>
+    <p class="use">The more X, the more Y. Different from the frame above — this one links two variables, not one variable to time.</p>
+    <div class="eg"><span class="han">我越听越喜欢。</span><span class="tr">The more I listen, the more I like it.</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">除了⋯⋯以外，⋯⋯</span>
+    <span class="pinyin">chúle … yǐwài, …</span>
+    <p class="use">Besides X / except X. Which of the two it means depends on what follows: 都 signals "except," 还/也 signals "besides."</p>
+    <div class="eg"><span class="han">除了他以外，我们都去。</span><span class="tr">Everyone except him is going.</span><br><span class="han">除了中文以外，他还会法语。</span><span class="tr">Besides Chinese, he also speaks French.</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">S + 把 + O + V + 结果</span>
+    <span class="pinyin">S bǎ O V + result</span>
+    <p class="use">Moves the object in front of the verb to say what was <em>done to</em> it. The verb can never stand bare — it needs a result, direction, or 了 attached. This is the single most-tested HSK 3 structure.</p>
+    <div class="eg"><span class="han">我把作业写完了。</span><span class="tr">I finished writing the homework.</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">S + 被 + Agent + V + 结果</span>
+    <span class="pinyin">S bèi Agent V + result</span>
+    <p class="use">Passive. Same rule about the verb needing a completion. Used far less than the English passive, and often carries a whiff of something unwelcome happening.</p>
+    <div class="eg"><span class="han">我的手机被他拿走了。</span><span class="tr">My phone was taken away by him.</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">V + 得 + 形容词</span>
+    <span class="pinyin">V + de + adjective</span>
+    <p class="use">Describes <em>how</em> an action is performed. If the verb has an object, the verb repeats: 他说中文说得很好.</p>
+    <div class="eg"><span class="han">她跑得很快。</span><span class="tr">She runs very fast.</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">是⋯⋯的</span>
+    <span class="pinyin">shì … de</span>
+    <p class="use">Focuses on <em>when, where, how</em> a completed past action happened — not on whether it happened. The thing being emphasised sits between 是 and 的.</p>
+    <div class="eg"><span class="han">我是坐飞机来的。</span><span class="tr">I came by plane (that's how I came).</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">快要⋯⋯了 / 就要⋯⋯了</span>
+    <span class="pinyin">kuàiyào … le / jiùyào … le</span>
+    <p class="use">About to happen. 就要 can take a time word in front of it; 快要 cannot.</p>
+    <div class="eg"><span class="han">火车快要开了。</span><span class="tr">The train is about to leave.</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">一⋯⋯就⋯⋯</span>
+    <span class="pinyin">yī … jiù …</span>
+    <p class="use">As soon as X, then Y. Tight sequence, no gap implied.</p>
+    <div class="eg"><span class="han">我一到家就给你打电话。</span><span class="tr">I'll call you as soon as I get home.</span></div>
+  </div>
+
+  <div class="gate">
+    <h4>Checkpoint C</h4>
+    <ol>
+      <li>Say out loud one 把 sentence about something on your desk right now. Check it against the rule: does your verb have something attached after it? If the verb is bare, the sentence is wrong — add 了 or a result.</li>
+      <li>Say out loud the difference between 越来越 and 越⋯⋯越 in one sentence. (One tracks change over time; the other links two variables.)</li>
+      <li>Turn this into a 是⋯⋯的 sentence out loud: "I bought it yesterday." (我是昨天买的。)</li>
+    </ol>
+    <p class="note">Item 1 is the one people rush. Say the sentence, then actually look at your verb.</p>
+  </div>
+</section>
+
+<section id="tones">
+  <h2>Part D — Tone pairs, for speaking</h2>
+
+  <div class="why">
+    <h4>Why pairs and not the four tones</h4>
+    <p>You can almost certainly produce each of the four tones correctly in isolation. That is not where intelligibility breaks down. It breaks down in <em>combination</em>, because your mouth has to reset pitch between syllables at speed, and some transitions are much harder than others.</p>
+    <p>Drilling the twenty pairs is the standard fix. Each cell below gives you a real two-syllable word to use as the anchor for that transition. Say the word, not the tone numbers.</p>
+    <p>Announced transition: this is a different kind of work from Parts A–C. Those were visual and analytical. This is motor practice. Do not try to do both in one sitting.</p>
+  </div>
+
+  <h3>First syllable: tone 1</h3>
+  <div class="tonegrid">
+    <div class="tone"><span class="combo">1 + 1</span><span class="han">今天</span><span class="rd">jīntiān</span><span class="mn">today</span></div>
+    <div class="tone"><span class="combo">1 + 2</span><span class="han">中国</span><span class="rd">Zhōngguó</span><span class="mn">China</span></div>
+    <div class="tone"><span class="combo">1 + 3</span><span class="han">中午</span><span class="rd">zhōngwǔ</span><span class="mn">noon</span></div>
+    <div class="tone"><span class="combo">1 + 4</span><span class="han">工作</span><span class="rd">gōngzuò</span><span class="mn">work</span></div>
+    <div class="tone"><span class="combo">1 + 0</span><span class="han">妈妈</span><span class="rd">māma</span><span class="mn">mum</span></div>
+  </div>
+
+  <h3>First syllable: tone 2</h3>
+  <div class="tonegrid">
+    <div class="tone"><span class="combo">2 + 1</span><span class="han">明天</span><span class="rd">míngtiān</span><span class="mn">tomorrow</span></div>
+    <div class="tone"><span class="combo">2 + 2</span><span class="han">学习</span><span class="rd">xuéxí</span><span class="mn">to study</span></div>
+    <div class="tone"><span class="combo">2 + 3</span><span class="han">啤酒</span><span class="rd">píjiǔ</span><span class="mn">beer</span></div>
+    <div class="tone"><span class="combo">2 + 4</span><span class="han">学校</span><span class="rd">xuéxiào</span><span class="mn">school</span></div>
+    <div class="tone"><span class="combo">2 + 0</span><span class="han">朋友</span><span class="rd">péngyou</span><span class="mn">friend</span></div>
+  </div>
+
+  <h3>First syllable: tone 3</h3>
+  <div class="tonegrid">
+    <div class="tone"><span class="combo">3 + 1</span><span class="han">老师</span><span class="rd">lǎoshī</span><span class="mn">teacher</span></div>
+    <div class="tone"><span class="combo">3 + 2</span><span class="han">起床</span><span class="rd">qǐchuáng</span><span class="mn">get up</span></div>
+    <div class="tone hard"><span class="combo">3 + 3</span><span class="han">你好</span><span class="rd">nǐ hǎo → ní hǎo</span><span class="mn">hello — see sandhi below</span></div>
+    <div class="tone"><span class="combo">3 + 4</span><span class="han">考试</span><span class="rd">kǎoshì</span><span class="mn">exam</span></div>
+    <div class="tone"><span class="combo">3 + 0</span><span class="han">姐姐</span><span class="rd">jiějie</span><span class="mn">older sister</span></div>
+  </div>
+
+  <h3>First syllable: tone 4</h3>
+  <div class="tonegrid">
+    <div class="tone"><span class="combo">4 + 1</span><span class="han">汽车</span><span class="rd">qìchē</span><span class="mn">car</span></div>
+    <div class="tone"><span class="combo">4 + 2</span><span class="han">复习</span><span class="rd">fùxí</span><span class="mn">to review</span></div>
+    <div class="tone"><span class="combo">4 + 3</span><span class="han">电脑</span><span class="rd">diànnǎo</span><span class="mn">computer</span></div>
+    <div class="tone"><span class="combo">4 + 4</span><span class="han">再见</span><span class="rd">zàijiàn</span><span class="mn">goodbye</span></div>
+    <div class="tone"><span class="combo">4 + 0</span><span class="han">谢谢</span><span class="rd">xièxie</span><span class="mn">thanks</span></div>
+  </div>
+
+  <h3>The three sound changes nobody writes down</h3>
+  <p>These are called 变调 (biàndiào), tone sandhi. They are not optional or regional — they are how the language is actually spoken, and the written pinyin usually does not show them.</p>
+
+  <div class="frame">
+    <span class="pattern">3 + 3 → 2 + 3</span>
+    <p class="use">Two third tones in a row: the first becomes a second tone. Written 你好 nǐ hǎo, spoken <em>ní hǎo</em>. Same for 很好 (hén hǎo), 我想 (wó xiǎng), 水果 (shuí guǒ).</p>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">不 bù → bú before tone 4</span>
+    <p class="use">不是 is <em>bú shì</em>, not bù shì. 不去 is <em>bú qù</em>. Before tones 1, 2, 3 it stays bù: 不吃 bù chī, 不来 bù lái, 不好 bù hǎo.</p>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">一 yī shifts by context</span>
+    <p class="use">Alone or counting: <em>yī</em>. Before a tone-4 syllable: <em>yí</em> — 一样 yíyàng, 一个 yíge. Before tones 1, 2, 3: <em>yì</em> — 一天 yìtiān, 一年 yìnián, 一起 yìqǐ.</p>
+  </div>
+
+  <div class="gate">
+    <h4>Checkpoint D</h4>
+    <ol>
+      <li>Say all five tone-3-first words aloud in a row: 老师, 起床, 你好, 考试, 姐姐. Listen for whether 你好 came out as ní hǎo. If it came out as two full third tones, say it again — that dip-dip is the single most audible learner tell.</li>
+      <li>Say 不是, 不去, 不好, 不吃 aloud. Two of those four are bú and two are bù. If you had to stop and think, that is fine — say the set again until it runs without stopping.</li>
+      <li>Record yourself saying any five words from the grids on your phone, then play it back. Playback, not memory: your judgement of your own tones while producing them is unreliable, which is the entire reason for this step.</li>
+    </ol>
+    <p class="note">Item 3 is the one that gets skipped. It is also the only one in this manual that gives you outside evidence rather than self-report. Do it.</p>
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>Part E — Recognition warm-up</h2>
+
+  <div class="why">
+    <h4>Why recognition and not recall</h4>
+    <p>This quiz shows you a character and asks you to pick its meaning from four options. That is deliberate. Recognising the right answer among distractors is a legitimate measure of knowing a character, and it is the form of knowing that reading actually requires. Producing it from a blank page is a separate, much harder skill, and Phase 2 is where that belongs.</p>
+    <p>Getting one wrong tells you which table to reread. That is all it means.</p>
+  </div>
+
+  <p class="look">Where to look: the character appears large in the middle of the box below. The four answer buttons are stacked underneath it. After you answer, a line of feedback appears under the buttons and the "Next character" button becomes the way forward — it sits at the bottom-left of the box, beside the running score.</p>
+
+  <div id="quizbox" class="noprint">
+    <div id="qprompt">—</div>
+    <p id="qtask">Which meaning belongs to this character?</p>
+    <div class="opts" id="opts"></div>
+    <p id="qfeedback"></p>
+    <div class="quizbar">
+      <button class="act" id="next">Next character</button>
+      <button class="act ghost" id="restart">Start over</button>
+      <span id="score">0 answered</span>
+    </div>
+  </div>
+
+  <div class="gate">
+    <h4>Checkpoint E</h4>
+    <ol>
+      <li>Answer fifteen. Not five — fifteen. The point is repetition volume, and the quiz takes under three minutes.</li>
+      <li>For every one you got wrong, name aloud which part of this manual it came from (radical table, or a sound family) and scroll back to that part.</li>
+      <li>Stop after fifteen even if you want to keep going. Ending on a completed chunk is worth more than a long session that blurs.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="next">
+  <h2>What Phase 2 will be</h2>
+  <p>You chose recognition first, handwriting later. That was the right order for how you learn, and the reason is worth stating explicitly rather than leaving implied: this manual is built almost entirely out of recognition tasks, which is your strongest memory channel. Handwriting is the opposite — free recall, stroke by stroke, with no cue on the page.</p>
+  <p>When you add it, Phase 2 will be built differently: stroke-order rules as a small set of principles rather than per-character diagrams, a grid practice sheet, and a much smaller character set worked much more slowly. Roughly 40 characters, not 200. Handwriting done properly is slow, and pretending otherwise is how people abandon it.</p>
+  <p>Nothing in Phase 2 depends on finishing Phase 1. They are separate tracks and can overlap.</p>
+</section>
+
+<footer>
+  <p>Mandarin Field Manual, Phase 1 · built 1 September 2026 · offline, single file, no dependencies · prints without the quiz</p>
+  <p>Pinyin here uses standard tone marks. Where spoken tone differs from written tone, the spoken form is given explicitly in Part D rather than left for you to work out.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var BANK = [
+    {c:"氵", q:"radical", a:"water, liquids, washing", d:["fire and heat","speech and language","metal and money"]},
+    {c:"讠", q:"radical", a:"speech, language, saying", d:["silk and colour","food and eating","earth and places"]},
+    {c:"饣", q:"radical", a:"food, meals, hunger", d:["metal and tools","doors and gateways","illness and pain"]},
+    {c:"钅", q:"radical", a:"metal, money, tools", d:["stone and hardness","grass and plants","vehicles"]},
+    {c:"艹", q:"radical", a:"plants, vegetables, herbs", d:["rain and weather","roofs and houses","insects"]},
+    {c:"扌", q:"radical", a:"doing things with hands", d:["walking and travel","seeing and eyes","strength and effort"]},
+    {c:"辶", q:"radical", a:"movement, travel, arriving", d:["cutting and division","hearing","trees and wood"]},
+    {c:"宀", q:"radical", a:"houses, indoors, shelter", d:["mouth and speech","money and value","fire and cooking"]},
+    {c:"贝", q:"radical", a:"money, value, trade", d:["moon and months","woman and kin","knife and cutting"]},
+    {c:"疒", q:"radical", a:"illness, medicine, pain", d:["earth and building","silk and thread","foot and running"]},
+    {c:"忄", q:"radical", a:"emotion, thought, will", d:["ear and hearing","sun and time","door and opening"]},
+    {c:"纟", q:"radical", a:"thread, cloth, connection, colour", d:["insects","claw and climbing","stone"]},
+    {c:"清", q:"char", a:"clear, pure", d:["to request","feeling, situation","eyeball"]},
+    {c:"请", q:"char", a:"to request, please", d:["clear, pure","sunny weather","to scold"]},
+    {c:"情", q:"char", a:"feeling, situation", d:["eyeball","clear weather","to run"]},
+    {c:"晴", q:"char", a:"clear weather, sunny", d:["feeling","to request","star"]},
+    {c:"睛", q:"char", a:"eyeball", d:["clear, pure","surname","empty"]},
+    {c:"妈", q:"char", a:"mother", d:["to scold","code or number","question particle"]},
+    {c:"骂", q:"char", a:"to scold, curse", d:["mother","horse","code, number"]},
+    {c:"码", q:"char", a:"code, number", d:["to scold","to hug","full, sated"]},
+    {c:"抱", q:"char", a:"to hug, hold", d:["to run","bubble, to steep","cannon"]},
+    {c:"跑", q:"char", a:"to run", d:["to hug","full, sated","to crawl"]},
+    {c:"泡", q:"char", a:"bubble; to steep", d:["cannon, firecracker","to run","red"]},
+    {c:"饱", q:"char", a:"full, sated", d:["to hug","bubble","large river"]},
+    {c:"炮", q:"char", a:"cannon, firecracker", d:["bubble","to crawl","merit"]},
+    {c:"江", q:"char", a:"large river", d:["red","merit, achievement","empty; sky"]},
+    {c:"红", q:"char", a:"red", d:["large river","empty; sky","work"]},
+    {c:"功", q:"char", a:"merit, achievement", d:["red","large river","star"]},
+    {c:"空", q:"char", a:"empty; sky", d:["merit","red","dad"]},
+    {c:"爸", q:"char", a:"dad", d:["to hold; the 把 construction","suggestion particle","to crawl"]},
+    {c:"把", q:"char", a:"to hold; the 把 construction", d:["dad","to crawl","suggestion particle"]},
+    {c:"爬", q:"char", a:"to crawl, climb", d:["dad","to hold","to run"]},
+    {c:"星", q:"char", a:"star", d:["nature, quality","surname","to be born"]},
+    {c:"性", q:"char", a:"nature, quality; sex", d:["star","surname","clear"]},
+    {c:"姓", q:"char", a:"surname", d:["nature, quality","star","mother"]},
+    {c:"药", q:"char", a:"medicine", d:["tea","flower","vegetable"]},
+    {c:"睡", q:"char", a:"to sleep", d:["to look","eye","to sit"]},
+    {c:"病", q:"char", a:"illness", d:["tired","to hurt","doctor"]},
+    {c:"钱", q:"char", a:"money", d:["iron","silver","clock"]},
+    {c:"饭", q:"char", a:"cooked rice, a meal", d:["hungry","full","restaurant"]}
+  ];
+
+  var order = [], idx = -1, answered = 0, correct = 0, locked = false;
+  var prompt = document.getElementById("qprompt");
+  var task = document.getElementById("qtask");
+  var optsEl = document.getElementById("opts");
+  var fb = document.getElementById("qfeedback");
+  var scoreEl = document.getElementById("score");
+
+  function shuffle(a){
+    for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}
+    return a;
+  }
+
+  function build(){
+    order = shuffle(BANK.map(function(_,i){return i;}));
+    idx = -1; answered = 0; correct = 0;
+    scoreEl.textContent = "0 answered";
+    fb.textContent = "";
+    nextQ();
+  }
+
+  function nextQ(){
+    idx++;
+    if(idx >= order.length){ order = shuffle(order); idx = 0; }
+    var q = BANK[order[idx]];
+    locked = false;
+    prompt.textContent = q.c;
+    task.textContent = q.q === "radical"
+      ? "Which zone of meaning does this radical point to?"
+      : "Which meaning belongs to this character?";
+    fb.textContent = "";
+    optsEl.innerHTML = "";
+    var choices = shuffle([q.a].concat(q.d.slice(0,3)));
+    choices.forEach(function(text){
+      var b = document.createElement("button");
+      b.className = "opt";
+      b.type = "button";
+      b.textContent = text;
+      b.addEventListener("click", function(){ answer(b, text, q); });
+      optsEl.appendChild(b);
+    });
+  }
+
+  function answer(btn, text, q){
+    if(locked) return;
+    locked = true;
+    answered++;
+    var buttons = optsEl.querySelectorAll("button");
+    for(var i=0;i<buttons.length;i++){
+      buttons[i].disabled = true;
+      if(buttons[i].textContent === q.a) buttons[i].classList.add("right");
+    }
+    if(text === q.a){
+      correct++;
+      btn.classList.add("right");
+      fb.textContent = "Correct.";
+    }else{
+      btn.classList.add("wrong");
+      fb.innerHTML = "Not that one. <span class='han'>" + q.c + "</span> is: " + q.a
+        + (q.q === "radical" ? " — reread the Part A table row." : " — reread its family in Part B.");
+    }
+    scoreEl.textContent = correct + " of " + answered + " correct";
+  }
+
+  document.getElementById("next").addEventListener("click", nextQ);
+  document.getElementById("restart").addEventListener("click", build);
+  build();
+})();
+</script>
+
+<script id="py-layer-script">
+(function(){
+  var WORDS = {"这个":"zhège","那个":"nàge","这些":"zhèxiē","那些":"nàxiē","几个":"jǐ ge","觉得": "juéde", "睡觉": "shuìjiào", "便宜": "piányi", "意思": "yìsi", "休息": "xiūxi", "朋友": "péngyou", "喜欢": "xǐhuan", "时候": "shíhou", "什么": "shénme", "怎么": "zěnme", "妈妈": "māma", "爸爸": "bàba", "姐姐": "jiějie", "哥哥": "gēge", "弟弟": "dìdi", "妹妹": "mèimei", "爷爷": "yéye", "奶奶": "nǎinai", "姥姥": "lǎolao", "姥爷": "lǎoye", "舅舅": "jiùjiu", "叔叔": "shūshu", "姑姑": "gūgu", "伯伯": "bóbo", "孩子": "háizi", "儿子": "érzi", "女儿": "nǚ'ér", "房子": "fángzi", "桌子": "zhuōzi", "椅子": "yǐzi", "明白": "míngbai", "稀罕": "xīhan", "得瑟": "dèse", "埋汰": "máitai", "唠嗑": "làokē", "嘎哈": "gáhá", "干哈": "gànhá", "医生": "yīshēng", "一点儿": "yìdiǎnr", "有点儿": "yǒudiǎnr", "一下": "yíxià", "一遍": "yíbiàn", "一个": "yíge", "一样": "yíyàng", "一天": "yìtiān", "一年": "yìnián", "一起": "yìqǐ", "一边": "yìbiān", "一会儿": "yíhuìr", "不是": "búshì", "不去": "búqù", "不太": "bútài", "不要": "búyào", "不对": "búduì", "不会": "búhuì", "不用": "búyòng", "对不起": "duìbuqǐ", "没关系": "méiguānxi", "关系": "guānxi", "谢谢": "xièxie", "东北": "Dōngběi", "中国": "Zhōngguó", "中文": "Zhōngwén", "北京": "Běijīng", "浙江": "Zhèjiāng", "沈阳": "Shěnyáng", "辽宁": "Liáoníng", "建德": "Jiàndé", "梅城": "Méichéng", "新安江": "Xīn'ānjiāng", "婺州": "Wùzhōu", "交通": "jiāotōng", "大学": "dàxué", "汉语": "Hànyǔ", "知道": "zhīdào", "电视": "diànshì", "电话": "diànhuà", "电脑": "diànnǎo", "好玩儿": "hǎowánr", "味儿": "wèir", "这儿": "zhèr", "哪儿": "nǎr", "多少": "duōshao", "因为": "yīnwèi", "为什么": "wèishénme", "干什么": "gàn shénme", "地方": "dìfang", "发音": "fāyīn", "变调": "biàndiào", "声调": "shēngdiào", "量词": "liàngcí", "过得": "guòde", "结果": "jiéguǒ", "还好": "háihǎo", "东西": "dōngxi", "认识": "rènshi", "先生": "xiānsheng", "学生": "xuésheng", "衣服": "yīfu", "我们": "wǒmen", "你们": "nǐmen", "他们": "tāmen", "咱们": "zánmen", "水果": "shuǐguǒ", "苹果": "píngguǒ", "鸡蛋": "jīdàn", "早饭": "zǎofàn", "午饭": "wǔfàn", "晚饭": "wǎnfàn", "身体": "shēntǐ", "高兴": "gāoxìng", "开心": "kāixīn", "难过": "nánguò", "担心": "dānxīn", "希望": "xīwàng", "天气": "tiānqì", "下雨": "xià yǔ", "下雪": "xià xuě", "今天": "jīntiān", "昨天": "zuótiān", "明天": "míngtiān", "早上": "zǎoshang", "中午": "zhōngwǔ", "晚上": "wǎnshang", "现在": "xiànzài", "以前": "yǐqián", "以后": "yǐhòu", "最近": "zuìjìn", "星期": "xīngqī", "时间": "shíjiān", "常常": "chángcháng", "已经": "yǐjīng", "工作": "gōngzuò", "打电话": "dǎ diànhuà", "回家": "huí jiā", "出去": "chūqù", "进来": "jìnlái", "开车": "kāichē", "走路": "zǒulù", "眼睛": "yǎnjing", "号码": "hàomǎ", "生病": "shēngbìng", "医院": "yīyuàn", "小心": "xiǎoxīn", "保重": "bǎozhòng", "家人": "jiārén", "父母": "fùmǔ", "外公": "wàigōng", "外婆": "wàipó", "阿姨": "āyí", "舅妈": "jiùmā", "姨妈": "yímā", "姨父": "yífu", "继父": "jìfù", "学校": "xuéxiào", "学习": "xuéxí", "复习": "fùxí", "老师": "lǎoshī", "起床": "qǐchuáng", "考试": "kǎoshì", "汽车": "qìchē", "再见": "zàijiàn", "啤酒": "píjiǔ", "做饭": "zuòfàn", "吃饭": "chīfàn", "好吃": "hǎochī", "好喝": "hǎohē", "怎么样": "zěnmeyàng", "哪里": "nǎlǐ", "有时候": "yǒu shíhou", "除了": "chúle", "以外": "yǐwài", "虽然": "suīrán", "但是": "dànshì", "所以": "suǒyǐ", "越来越": "yuè lái yuè", "快要": "kuàiyào", "就要": "jiùyào", "作业": "zuòyè", "写完": "xiěwán", "手机": "shǒujī", "拿走": "názǒu", "飞机": "fēijī", "火车": "huǒchē", "冷": "lěng", "好不好": "hǎo bu hǎo", "要不要": "yào bu yào", "听不懂": "tīng bu dǒng", "看电视": "kàn diànshì", "外面": "wàimiàn", "真": "zhēn", "形声": "xíngshēng", "声旁": "shēngpáng", "口音": "kǒuyīn", "北方": "běifāng", "南方": "nánfāng", "军人": "jūnrén", "名字": "míngzi", "东北话": "Dōngběihuà"};
+  var CHARS = {"一": "yī", "七": "qī", "上": "shàng", "下": "xià", "不": "bù", "业": "yè", "东": "dōng", "丝": "sī", "两": "liǎng", "个": "gè", "中": "zhōng", "为": "wèi", "主": "zhǔ", "么": "me", "也": "yě", "习": "xí", "买": "mǎi", "了": "le", "二": "èr", "人": "rén", "亻": "rén", "什": "shén", "今": "jīn", "他": "tā", "以": "yǐ", "们": "men", "件": "jiàn", "休": "xiū", "会": "huì", "伯": "bó", "但": "dàn", "位": "wèi", "住": "zhù", "体": "tǐ", "作": "zuò", "你": "nǐ", "便": "biàn", "保": "bǎo", "候": "hòu", "做": "zuò", "儿": "ér", "公": "gōng", "六": "liù", "关": "guān", "兴": "xìng", "再": "zài", "写": "xiě", "冷": "lěng", "几": "jǐ", "出": "chū", "刀": "dāo", "刂": "dāo", "别": "bié", "到": "dào", "刻": "kè", "前": "qián", "剩": "shèng", "力": "lì", "功": "gōng", "加": "jiā", "动": "dòng", "助": "zhù", "包": "bāo", "北": "běi", "医": "yī", "十": "shí", "午": "wǔ", "卖": "mài", "去": "qù", "友": "yǒu", "双": "shuāng", "发": "fā", "叔": "shū", "变": "biàn", "口": "kǒu", "只": "zhǐ", "叫": "jiào", "可": "kě", "号": "hào", "吃": "chī", "名": "míng", "后": "hòu", "吗": "ma", "吧": "ba", "听": "tīng", "呢": "ne", "味": "wèi", "咋": "zǎ", "咱": "zán", "哈": "hā", "哥": "gē", "哪": "nǎ", "唠": "lào", "唱": "chàng", "啤": "pí", "喜": "xǐ", "喝": "hē", "嗑": "kē", "嘎": "gā", "四": "sì", "回": "huí", "因": "yīn", "国": "guó", "土": "tǔ", "在": "zài", "地": "dì", "场": "chǎng", "坐": "zuò", "块": "kuài", "埋": "mái", "城": "chéng", "声": "shēng", "复": "fù", "外": "wài", "多": "duō", "天": "tiān", "太": "tài", "女": "nǚ", "奶": "nǎi", "她": "tā", "好": "hǎo", "妈": "mā", "妹": "mèi", "姐": "jiě", "姑": "gū", "姓": "xìng", "姥": "lǎo", "姨": "yí", "娘": "niáng", "婆": "pó", "婺": "wù", "子": "zi", "字": "zì", "学": "xué", "孩": "hái", "宀": "mián", "宁": "níng", "安": "ān", "完": "wán", "宜": "yí", "客": "kè", "室": "shì", "家": "jiā", "容": "róng", "宾": "bīn", "对": "duì", "小": "xiǎo", "少": "shǎo", "就": "jiù", "山": "shān", "州": "zhōu", "工": "gōng", "已": "yǐ", "巴": "bā", "师": "shī", "希": "xī", "帮": "bāng", "常": "cháng", "干": "gàn", "年": "nián", "床": "chuáng", "建": "jiàn", "开": "kāi", "弟": "dì", "张": "zhāng", "形": "xíng", "彪": "biāo", "很": "hěn", "得": "de", "德": "dé", "心": "xīn", "忄": "xīn", "忙": "máng", "快": "kuài", "怎": "zěn", "怕": "pà", "思": "sī", "性": "xìng", "息": "xi", "情": "qíng", "想": "xiǎng", "意": "yì", "慢": "màn", "懂": "dǒng", "我": "wǒ", "房": "fáng", "所": "suǒ", "手": "shǒu", "扌": "shǒu", "打": "dǎ", "找": "zhǎo", "把": "bǎ", "报": "bào", "抱": "bào", "担": "dān", "拿": "ná", "提": "tí", "数": "shù", "整": "zhěng", "文": "wén", "新": "xīn", "方": "fāng", "旁": "páng", "日": "rì", "早": "zǎo", "时": "shí", "明": "míng", "星": "xīng", "春": "chūn", "昨": "zuó", "是": "shì", "晚": "wǎn", "晴": "qíng", "最": "zuì", "月": "yuè", "有": "yǒu", "朋": "péng", "服": "fú", "望": "wàng", "期": "qī", "木": "mù", "本": "běn", "机": "jī", "条": "tiáo", "来": "lái", "杯": "bēi", "林": "lín", "果": "guǒ", "树": "shù", "校": "xiào", "样": "yàng", "桌": "zhuō", "梅": "méi", "椅": "yǐ", "欢": "huān", "母": "mǔ", "比": "bǐ", "气": "qì", "水": "shuǐ", "氵": "shuǐ", "汉": "hàn", "江": "jiāng", "汤": "tāng", "汰": "tài", "汽": "qì", "沈": "shěn", "没": "méi", "河": "hé", "法": "fǎ", "泡": "pào", "洗": "xǐ", "浙": "zhè", "清": "qīng", "火": "huǒ", "灬": "huǒ", "炒": "chǎo", "炮": "pào", "点": "diǎn", "烧": "shāo", "热": "rè", "然": "rán", "照": "zhào", "爪": "zhǎo", "爬": "pá", "父": "fù", "爷": "yé", "爸": "bà", "玩": "wán", "现": "xiàn", "瑟": "sè", "生": "shēng", "用": "yòng", "电": "diàn", "疒": "nè", "疲": "pí", "疼": "téng", "病": "bìng", "痛": "tòng", "白": "bái", "的": "de", "目": "mù", "看": "kàn", "真": "zhēn", "眼": "yǎn", "睛": "jīng", "睡": "shuì", "知": "zhī", "石": "shí", "码": "mǎ", "硬": "yìng", "碗": "wǎn", "稀": "xī", "穴": "xué", "空": "kōng", "穿": "chuān", "等": "děng", "系": "xì", "累": "lèi", "纟": "sī", "红": "hóng", "纸": "zhǐ", "细": "xì", "经": "jīng", "结": "jié", "给": "gěi", "继": "jì", "罕": "hǎn", "老": "lǎo", "考": "kǎo", "耳": "ěr", "聊": "liáo", "职": "zhí", "肉": "ròu", "肚": "dù", "胖": "pàng", "能": "néng", "脑": "nǎo", "脸": "liǎn", "腿": "tuǐ", "舅": "jiù", "艹": "cǎo", "花": "huā", "苹": "píng", "茶": "chá", "草": "cǎo", "药": "yào", "菜": "cài", "虫": "chóng", "虽": "suī", "虾": "xiā", "蚊": "wén", "蛇": "shé", "蛋": "dàn", "行": "xíng", "被": "bèi", "要": "yào", "见": "jiàn", "视": "shì", "觉": "jué", "言": "yán", "讠": "yán", "词": "cí", "试": "shì", "话": "huà", "语": "yǔ", "说": "shuō", "请": "qǐng", "谁": "shéi", "调": "diào", "谢": "xiè", "贝": "bèi", "财": "cái", "贵": "guì", "费": "fèi", "贼": "zéi", "赢": "yíng", "走": "zǒu", "起": "qǐ", "越": "yuè", "足": "zú", "跑": "pǎo", "跟": "gēn", "路": "lù", "跳": "tiào", "身": "shēn", "车": "chē", "转": "zhuǎn", "轻": "qīng", "较": "jiào", "辆": "liàng", "辶": "chuò", "边": "biān", "辽": "liáo", "过": "guò", "近": "jìn", "还": "hái", "这": "zhè", "进": "jìn", "远": "yuǎn", "送": "sòng", "遍": "biàn", "道": "dào", "都": "dōu", "酒": "jiǔ", "里": "lǐ", "重": "zhòng", "量": "liàng", "金": "jīn", "钅": "jīn", "钟": "zhōng", "钱": "qián", "铁": "tiě", "银": "yín", "门": "mén", "问": "wèn", "间": "jiān", "闹": "nào", "闻": "wén", "阳": "yáng", "阿": "ā", "院": "yuàn", "除": "chú", "难": "nán", "雨": "yǔ", "雪": "xuě", "零": "líng", "雷": "léi", "需": "xū", "青": "qīng", "面": "miàn", "音": "yīn", "飞": "fēi", "食": "shí", "饣": "shí", "饭": "fàn", "饮": "yǐn", "饱": "bǎo", "饿": "è", "馆": "guǎn", "马": "mǎ", "骂": "mà", "高": "gāo", "鱼": "yú", "鸡": "jī", "货": "huò", "取": "qǔ", "聪": "cōng", "𧾷": "zú"};
+  var MAXW = 3;
+  function pinyinFor(run){
+    var out=[],i=0;
+    while(i<run.length){
+      var hit=null;
+      for(var L=Math.min(MAXW,run.length-i);L>1;L--){
+        var w=run.substr(i,L);
+        if(WORDS[w]){hit=[L,WORDS[w]];break;}
+      }
+      if(hit){out.push(hit[1]);i+=hit[0];}
+      else{var cp=run.codePointAt(i);var ch=String.fromCodePoint(cp);out.push(CHARS[ch]||"?");i+=ch.length;}
+    }
+    return out.join(" ");
+  }
+  var HAN=/\p{Script=Han}+/gu;
+  function wrap(root){
+    var walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+      var p=n.parentNode;
+      while(p&&p!==root){
+        if(p.nodeName==="SCRIPT"||p.nodeName==="STYLE"||p.id==="quizbox"||p.classList.contains("zh"))return NodeFilter.FILTER_REJECT;
+        p=p.parentNode;
+      }
+      return HAN.test(n.nodeValue)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
+    }});
+    var nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+    nodes.forEach(function(n){
+      var text=n.nodeValue,frag=document.createDocumentFragment(),last=0,m;
+      HAN.lastIndex=0;
+      while((m=HAN.exec(text))){
+        if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));
+        var s=document.createElement("span");
+        s.className="zh";s.setAttribute("data-py",pinyinFor(m[0]));s.textContent=m[0];
+        frag.appendChild(s);last=m.index+m[0].length;
+      }
+      if(last<text.length)frag.appendChild(document.createTextNode(text.slice(last)));
+      n.parentNode.replaceChild(frag,n);
+    });
+  }
+  var root=document.querySelector("div.wrap");
+  if(root)wrap(root);
+
+  // tap-to-toggle for touch (and works with mouse too)
+  document.addEventListener("click",function(e){
+    var t=e.target.closest(".zh");
+    var open=document.querySelectorAll(".zh.on");
+    for(var i=0;i<open.length;i++){if(open[i]!==t)open[i].classList.remove("on");}
+    if(t&&!document.body.classList.contains("py-off"))t.classList.toggle("on");
+  });
+
+  // mode toggle in the nav: hover → always → off
+  var modes=[["hover","Pinyin: hover / tap"],["always","Pinyin: always"],["off","Pinyin: off"]];
+  var mi=0;
+  var nav=document.querySelector("nav ul");
+  if(nav){
+    var li=document.createElement("li");li.className="pytoggle";
+    var b=document.createElement("button");b.type="button";b.textContent=modes[0][1];
+    b.setAttribute("aria-label","Cycle pinyin display mode");
+    b.addEventListener("click",function(){
+      mi=(mi+1)%modes.length;
+      document.body.classList.remove("py-always","py-off");
+      if(modes[mi][0]==="always")document.body.classList.add("py-always");
+      if(modes[mi][0]==="off")document.body.classList.add("py-off");
+      b.textContent=modes[mi][1];
+      var open=document.querySelectorAll(".zh.on");for(var i=0;i<open.length;i++)open[i].classList.remove("on");
+    });
+    li.appendChild(b);nav.appendChild(li);
+  }
+})();
+</script>
+
+</body>
+</html>

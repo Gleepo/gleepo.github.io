@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mandarin Field Manual — Phase 0: Getting Back In</title>
+<style>
+:root{
+  --sea:#0d4351;
+  --teal:#177d8c;
+  --aqua:#3fb8c4;
+  --foam:#e6f5f7;
+  --sand:#f4ecd9;
+  --coral:#d9614a;
+  --ink:#10242a;
+  --muted:#4f6b72;
+  --paper:#fbf8f1;
+  --line:#c9dde1;
+  --font-display:"Carter One","Trebuchet MS",Verdana,sans-serif;
+  --font-body:"Atkinson Hyperlegible","Atkinson Hyperlegible Next",-apple-system,"Segoe UI",Helvetica,sans-serif;
+  --font-han:"Noto Sans SC","Noto Sans CJK SC","PingFang SC","Hiragino Sans GB","Heiti SC","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.65}
+.wrap{max-width:840px;margin:0 auto;padding:0 20px 100px}
+p,li{max-width:68ch}
+
+.masthead{background:var(--sea);color:var(--foam);padding:44px 0 36px;border-bottom:6px solid var(--coral)}
+.masthead .wrap{padding-bottom:0}
+.masthead h1{font-family:var(--font-display);font-size:2.45rem;line-height:1.15;margin:0 0 6px;color:#fff}
+.masthead .sub{color:var(--aqua);margin:0 0 22px;font-size:1.05rem}
+.stamp{display:inline-block;font-family:var(--font-han);font-size:3.6rem;line-height:1;color:var(--sand);border:3px solid var(--coral);border-radius:10px;padding:10px 16px;margin-bottom:18px}
+.masthead .gloss{color:var(--foam);opacity:.85;font-size:.95rem;margin:0}
+
+nav{position:sticky;top:0;z-index:20;background:var(--teal);border-bottom:3px solid var(--sea)}
+nav ul{max-width:840px;margin:0 auto;padding:0 12px;list-style:none;display:flex;flex-wrap:wrap;gap:2px}
+nav a{display:block;min-height:44px;line-height:44px;padding:0 14px;color:#fff;text-decoration:none;font-size:.92rem}
+nav a:hover{background:var(--sea)}
+nav a:focus-visible{outline:3px solid var(--sand);outline-offset:-3px}
+
+section{padding-top:38px}
+h2{font-family:var(--font-display);font-size:1.75rem;color:var(--sea);margin:0 0 4px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+h3{font-family:var(--font-display);font-size:1.2rem;color:var(--teal);margin:28px 0 6px}
+h4{font-size:1rem;margin:18px 0 4px;color:var(--sea)}
+
+.why{background:var(--foam);border-left:6px solid var(--teal);padding:14px 18px;margin:18px 0;border-radius:0 8px 8px 0}
+.why h4{margin-top:0;color:var(--teal)}
+.why p:last-child{margin-bottom:0}
+
+.gate{background:#fdf1ee;border:2px solid var(--coral);border-radius:10px;padding:16px 18px;margin:30px 0 10px}
+.gate h4{margin:0 0 8px;color:var(--coral);font-family:var(--font-display);font-size:1.1rem}
+.gate ol{margin:0;padding-left:22px}
+.gate li{margin-bottom:6px}
+.gate .note{margin:10px 0 0;font-size:.9rem;color:var(--muted)}
+
+.look{font-size:.9rem;color:var(--muted);border-left:3px solid var(--aqua);padding-left:12px;margin:12px 0}
+
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:.95rem}
+th{background:var(--sea);color:#fff;text-align:left;padding:10px 12px;font-weight:normal}
+td{border-bottom:1px solid var(--line);padding:9px 12px;vertical-align:middle}
+tr:nth-child(even) td{background:#f5f1e6}
+.han{font-family:var(--font-han);font-size:1.5rem;line-height:1.3}
+td.han{width:110px;color:var(--sea)}
+.py{color:var(--teal);font-style:italic}
+
+/* phrase cards — the signature element of this phase */
+.phrase{
+  display:grid;
+  grid-template-columns:1fr;
+  border:2px solid var(--line);
+  border-left:8px solid var(--coral);
+  border-radius:10px;
+  padding:14px 18px;
+  margin:12px 0;
+  background:#fff;
+}
+.phrase .cn{font-family:var(--font-han);font-size:1.9rem;line-height:1.35;color:var(--sea)}
+.phrase .pi{color:var(--teal);font-style:italic;font-size:1rem;margin-top:2px}
+.phrase .en{margin-top:4px}
+.phrase .when{margin-top:8px;font-size:.9rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px}
+.phrase.calm{border-left-color:var(--aqua)}
+
+.frame{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:14px 0;background:#fff}
+.frame .pattern{font-family:var(--font-han);font-size:1.45rem;color:var(--sea);display:block;margin-bottom:2px}
+.frame .pinyin{color:var(--teal);font-style:italic;font-size:.95rem;display:block}
+.frame .use{margin:8px 0 8px;font-size:.95rem}
+.frame .eg{background:var(--sand);border-radius:6px;padding:8px 12px;font-size:.95rem}
+.frame .eg .han{font-size:1.2rem;display:block}
+.frame .eg .tr{color:var(--muted);font-size:.9rem}
+
+.trap{border:2px solid var(--teal);border-radius:10px;padding:12px 16px;margin:12px 0;background:#fff}
+.trap .bad{color:var(--coral)}
+.trap .good{color:#2e7d4f}
+.trap .sound{font-family:var(--font-han);font-size:1.5rem;color:var(--sea)}
+
+#quizbox{border:3px solid var(--teal);border-radius:14px;padding:20px;background:#fff;margin-top:18px}
+#qprompt{font-family:var(--font-han);font-size:3.8rem;line-height:1.2;text-align:center;color:var(--sea);margin:6px 0 4px}
+#qtask{text-align:center;color:var(--muted);margin:0 0 18px;font-size:.95rem}
+.opts{display:grid;gap:10px}
+.opt{min-height:52px;text-align:left;font-family:var(--font-body);font-size:1rem;background:var(--foam);border:2px solid var(--line);border-radius:10px;padding:12px 16px;cursor:pointer;color:var(--ink)}
+.opt:hover:not(:disabled){border-color:var(--teal)}
+.opt:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+.opt.right{background:#dff0e4;border-color:#2e8b57}
+.opt.wrong{background:#fbe3de;border-color:var(--coral)}
+.opt:disabled{cursor:default}
+#qfeedback{margin:16px 0 0;min-height:26px;font-size:.98rem}
+.quizbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:16px}
+button.act{min-height:44px;padding:0 20px;border-radius:8px;border:none;background:var(--teal);color:#fff;font-family:var(--font-body);font-size:1rem;cursor:pointer}
+button.act:hover{background:var(--sea)}
+button.act:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+button.act.ghost{background:transparent;color:var(--teal);border:2px solid var(--teal)}
+#score{color:var(--muted);font-size:.95rem}
+
+footer{margin-top:60px;padding-top:20px;border-top:2px solid var(--line);color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{
+  nav,#quizbox,.noprint{display:none}
+  body{background:#fff;font-size:11pt}
+  .masthead{background:#fff;color:#000;border-bottom:2px solid #000}
+  .masthead h1,.masthead .sub,.masthead .gloss{color:#000}
+  .stamp{color:#000;border-color:#000}
+  section{page-break-inside:avoid}
+}
+</style>
+
+<style id="py-layer">
+.zh{position:relative;cursor:help;border-bottom:1px dotted transparent;transition:border-color .12s}
+.zh:hover,.zh.on{border-bottom-color:var(--aqua)}
+.zh::after{
+  content:attr(data-py);
+  position:absolute;left:0;bottom:calc(100% + 4px);
+  background:var(--sea);color:#fff;
+  font-family:var(--font-body);font-style:normal;font-weight:normal;
+  font-size:.8rem;line-height:1.3;letter-spacing:0;
+  padding:4px 9px;border-radius:6px;white-space:nowrap;
+  box-shadow:0 2px 8px rgba(13,67,81,.25);
+  display:none;z-index:30;pointer-events:none;
+}
+.zh:hover::after,.zh.on::after{display:block}
+body.py-always .zh::after{
+  display:inline;position:static;background:none;color:var(--teal);
+  box-shadow:none;padding:0 0 0 .35em;font-size:.72em;white-space:normal;
+}
+body.py-always .zh{border-bottom-color:transparent}
+body.py-off .zh::after{display:none!important}
+body.py-off .zh{cursor:auto;border-bottom-color:transparent}
+.pytoggle button{
+  min-height:44px;height:44px;padding:0 14px;margin:0;
+  background:var(--sea);color:#fff;border:none;
+  font-family:var(--font-body);font-size:.92rem;cursor:pointer;
+}
+.pytoggle button:hover{background:var(--coral)}
+.pytoggle button:focus-visible{outline:3px solid var(--sand);outline-offset:-3px}
+@media print{.zh::after{display:none!important}.pytoggle{display:none}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="stamp">听不懂</div>
+    <h1>Mandarin Field Manual</h1>
+    <p class="sub">Phase 0 — Getting back in, and staying in the conversation</p>
+    <p class="gloss">tīng bu dǒng — "I don't understand." The most useful sentence in this manual, and the reason Part B comes before the vocabulary.</p>
+  </div>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#use">How to use</a></li>
+    <li><a href="#sounds">A · Sounds</a></li>
+    <li><a href="#repair">B · Staying in</a></li>
+    <li><a href="#grammar">C · Grammar</a></li>
+    <li><a href="#words">D · Words</a></li>
+    <li><a href="#openers">E · Openers</a></li>
+    <li><a href="#quiz">F · Quiz</a></li>
+  </ul>
+</nav>
+
+<div class="wrap">
+
+<section id="use">
+  <h2>How to use this</h2>
+  <p class="look">Pinyin layer: hover any Chinese text (or tap it, on iPad) to see its reading. The button at the right of the menu bar cycles between hover, always-shown, and off. Readings are dictionary tones — tone sandhi is not applied except in a few fixed phrases — so 你好 shows as nǐ hǎo, and Part D of the Phase 1 manual is where the spoken form lives.</p>
+
+  <p>This is Phase 0 — the revision layer that sits <em>underneath</em> the Phase 1 reading manual. It covers HSK 1–2 ground you have already met and lost, so the work here is reactivation rather than learning. That is a genuinely different and faster process; expect things to come back rather than go in.</p>
+  <p>Keep it open while you work. Looking things up here is the intended behaviour. Nothing in this manual asks you to retrieve anything cold.</p>
+  <p><strong>Order matters and is not the usual one.</strong> Sounds first, then the phrases that keep a conversation alive, then grammar, then vocabulary. Most courses put vocabulary first. That order is wrong for your goal: you can hold a real conversation with a small vocabulary and good repair strategies, and you cannot hold one with a large vocabulary and none.</p>
+  <p><strong>If you get pulled away:</strong> note the part letter and the last checkpoint you passed. Every part is self-contained, so re-entry costs nothing.</p>
+
+  <div class="why">
+    <h4>What this phase is actually for</h4>
+    <p>The goal is conversations with your parents. That reshapes everything. It means listening matters more than reading, that home vocabulary beats classroom vocabulary, and that fluency is less about knowing more and more about recovering fast when you have lost the thread.</p>
+    <p>It also means you have something most learners do not: a native-speed source who is on your side, will repeat things, and is not going anywhere. That is the best language resource that exists, and it is the reason Part B is worth more than the whole rest of this document.</p>
+  </div>
+</section>
+
+<section id="sounds">
+  <h2>Part A — The sounds pinyin lies about</h2>
+
+  <div class="why">
+    <h4>Why start here</h4>
+    <p>Pinyin uses Roman letters for sounds those letters do not make in English. If you learned the spelling and quietly kept an English pronunciation underneath it, that mismatch is invisible on the page and audible the moment you speak. Six of these account for most of it.</p>
+    <p>Say every example aloud. This section cannot be done silently — it is the only motor-skill part of Phase 0.</p>
+  </div>
+
+  <div class="trap">
+    <h4>1. j / q / x are not English j, ch, sh</h4>
+    <p>They are made further forward, tongue flat and low, tip near the bottom teeth. <span class="sound">q</span> in 请 <span class="py">qǐng</span> is closer to a hissed "ch" said with a smile than to "chuh." <span class="sound">x</span> in 谢谢 <span class="py">xièxie</span> is a hissed "sh" made at the same forward position.</p>
+    <p class="bad">Watch out: after j, q, x, a written <em>u</em> is always <em>ü</em>. 去 is not "qoo" — it is <span class="py">qù</span> with the ü of French <em>tu</em>. Same for 学 <span class="py">xué</span>, 觉 <span class="py">jué</span>.</p>
+  </div>
+
+  <div class="trap">
+    <h4>2. zh / ch / sh / r are retroflex — tongue curled back</h4>
+    <p>Contrast them against z / c / s, which are flat and forward. 四 <span class="py">sì</span> (four) versus 是 <span class="py">shì</span> (to be). 早 <span class="py">zǎo</span> versus 找 <span class="py">zhǎo</span>. The pair 四 / 十 (<span class="py">sì</span> / <span class="py">shí</span>) is the classic one and worth drilling on its own.</p>
+    <p><span class="sound">r</span> in 热 <span class="py">rè</span> is not an English r and not a French r — it is the retroflex position with voice, closer to the "s" in "measure" said with a curled tongue.</p>
+  </div>
+
+  <div class="trap">
+    <h4>3. -n and -ng are different words, not accents</h4>
+    <p>很 <span class="py">hěn</span> (very) and 行 <span class="py">xíng</span> (okay). 山 <span class="py">shān</span> (mountain) and 上 <span class="py">shàng</span> (on, up). English lets these blur; Mandarin does not. For -n the tongue tip touches behind the teeth; for -ng it does not touch at all and the sound resonates at the back.</p>
+  </div>
+
+  <div class="trap">
+    <h4>4. Written vowels that hide a sound</h4>
+    <p><span class="sound">ui</span> is really <em>uei</em>: 对 <span class="py">duì</span> sounds like "dway," not "dwee." <span class="sound">iu</span> is really <em>iou</em>: 六 <span class="py">liù</span> sounds like "lyoh." <span class="sound">un</span> is really <em>uen</em>: 春 <span class="py">chūn</span> has a small e in the middle.</p>
+  </div>
+
+  <div class="trap">
+    <h4>5. -ian sounds like "yen"</h4>
+    <p>天 <span class="py">tiān</span> is "tyen," not "tyahn." 钱 <span class="py">qián</span>, 年 <span class="py">nián</span>, 边 <span class="py">biān</span> all follow. But -iang keeps the "ah": 想 <span class="py">xiǎng</span>, 两 <span class="py">liǎng</span>. This one pair of finals catches almost everybody.</p>
+  </div>
+
+  <div class="trap">
+    <h4>6. Bare e is not "eh"</h4>
+    <p>Alone, <span class="sound">e</span> is a back unrounded vowel, roughly the "u" in "duh." 了 <span class="py">le</span>, 的 <span class="py">de</span>, 呢 <span class="py">ne</span>, 喝 <span class="py">hē</span>, 热 <span class="py">rè</span>. It only becomes "eh" in <em>ei</em> (给 <span class="py">gěi</span>) and <em>ie</em> (谢 <span class="py">xiè</span>).</p>
+  </div>
+
+  <p>Tones themselves — including the three sandhi rules that written pinyin does not show — live in <strong>Part D of the Phase 1 manual</strong>. If your tones feel shaky, do that section before this one; it is the other half of this part.</p>
+
+  <div class="gate">
+    <h4>Checkpoint A</h4>
+    <ol>
+      <li>Say aloud, slowly: 四 sì — 十 shí — 是 shì — 吃 chī — 七 qī. Five sounds, three tongue positions. If two of them came out identical, that pair is your homework.</li>
+      <li>Say 去 qù and 天 tiān aloud. Check yourself against the rules: did 去 have a ü, and did 天 rhyme with "yen"?</li>
+      <li>Say 很好 hěn hǎo and 行 xíng back to back. Feel where your tongue tip is on each ending. If it is in the same place both times, one of them is wrong.</li>
+    </ol>
+    <p class="note">These are self-checks and self-checks are unreliable for sound. Once this week, record thirty seconds of these and play it back — or, better, say them to your parents and let them tell you.</p>
+  </div>
+</section>
+
+<section id="repair">
+  <h2>Part B — Staying in the conversation</h2>
+
+  <div class="why">
+    <h4>Why this is the most important part of the manual</h4>
+    <p>Conversations with fluent speakers do not fail because you lack vocabulary. They fail at the moment you stop understanding, freeze, and switch to English — after which the Chinese conversation is over and it is very hard to restart.</p>
+    <p>Repair phrases break that chain. They convert "I am lost" from a conversation-ending event into an ordinary turn that keeps you inside the language. Learn these to automaticity before anything else in this document. Fluent-sounding repair also buys you enormous patience from the person you are talking to, because it signals you are still in the game.</p>
+    <p>Stated plainly: knowing these ten phrases cold is worth more to your goal than the next three hundred words of vocabulary.</p>
+  </div>
+
+  <h3>When you did not catch it</h3>
+
+  <div class="phrase">
+    <span class="cn">你说慢一点儿，好吗？</span>
+    <span class="pi">Nǐ shuō màn yìdiǎnr, hǎo ma?</span>
+    <span class="en">Could you speak a bit slower?</span>
+    <span class="when">The single highest-value sentence here. Use it early and often — most people speed back up within a minute, so you will use it repeatedly, and that is normal rather than rude.</span>
+  </div>
+
+  <div class="phrase">
+    <span class="cn">请再说一遍。</span>
+    <span class="pi">Qǐng zài shuō yí biàn.</span>
+    <span class="en">Please say that again.</span>
+    <span class="when">遍 biàn is the measure word for a repetition of something from start to finish. Note 一 becomes yí here, before the fourth tone.</span>
+  </div>
+
+  <div class="phrase">
+    <span class="cn">我听不懂。</span>
+    <span class="pi">Wǒ tīng bu dǒng.</span>
+    <span class="en">I hear it but I don't understand it.</span>
+    <span class="when">Different from 我不懂 (I don't understand at all). 听不懂 says specifically that the sound reached you and the meaning didn't — which tells your parents to rephrase rather than just repeat louder.</span>
+  </div>
+
+  <div class="phrase calm">
+    <span class="cn">等一下。</span>
+    <span class="pi">Děng yíxià.</span>
+    <span class="en">Hang on a second.</span>
+    <span class="when">Buys you processing time without ending your turn. Underrated — most of what feels like not understanding is just not understanding <em>fast enough</em>.</span>
+  </div>
+
+  <h3>When you caught it but need the meaning</h3>
+
+  <div class="phrase">
+    <span class="cn">这个词是什么意思？</span>
+    <span class="pi">Zhège cí shì shénme yìsi?</span>
+    <span class="en">What does this word mean?</span>
+    <span class="when">词 cí is a word; 字 zì is a character. Use 词 when you heard something, 字 when you saw something written.</span>
+  </div>
+
+  <div class="phrase">
+    <span class="cn">⋯⋯用中文怎么说？</span>
+    <span class="pi">… yòng Zhōngwén zěnme shuō?</span>
+    <span class="en">How do you say … in Chinese?</span>
+    <span class="when">Your main engine for growing vocabulary in conversation instead of in a book. Say the English word in the blank; nobody minds.</span>
+  </div>
+
+  <div class="phrase calm">
+    <span class="cn">你的意思是⋯⋯？</span>
+    <span class="pi">Nǐ de yìsi shì …?</span>
+    <span class="en">Do you mean …?</span>
+    <span class="when">Say back what you think you heard. This is how you check comprehension without stopping the conversation, and it gives your parents a chance to correct you gently.</span>
+  </div>
+
+  <h3>When you need to keep going anyway</h3>
+
+  <div class="phrase calm">
+    <span class="cn">我明白了。</span>
+    <span class="pi">Wǒ míngbai le.</span>
+    <span class="en">Got it. / Now I understand.</span>
+    <span class="when">The 了 matters: it marks the change from not-understanding to understanding. 我明白 without 了 sounds oddly flat.</span>
+  </div>
+
+  <div class="phrase calm">
+    <span class="cn">我的中文不太好，但是我在学。</span>
+    <span class="pi">Wǒ de Zhōngwén bú tài hǎo, dànshì wǒ zài xué.</span>
+    <span class="en">My Chinese isn't great, but I'm learning.</span>
+    <span class="when">Worth having ready as a whole unit. 不太好 is softer than 不好. 在学 uses 在 for an ongoing action — see Part C.</span>
+  </div>
+
+  <div class="phrase">
+    <span class="cn">我们用中文说，好不好？</span>
+    <span class="pi">Wǒmen yòng Zhōngwén shuō, hǎo bu hǎo?</span>
+    <span class="en">Let's talk in Chinese, okay?</span>
+    <span class="when">The one that makes the rest possible. If a conversation has drifted into English out of habit, this pulls it back — and asking explicitly is far more effective than trying to hold the line silently.</span>
+  </div>
+
+  <div class="gate">
+    <h4>Checkpoint B</h4>
+    <ol>
+      <li>Cover the pinyin. Say all four "when you did not catch it" phrases aloud from the characters. If you cannot, uncover and say them again reading — reading them is a pass at this stage.</li>
+      <li>Say aloud the difference between 我听不懂 and 我不懂. (The first says the sound arrived but the meaning didn't; it asks for rephrasing rather than volume.)</li>
+      <li>Pick the three you would most likely need in your next real conversation, and say each one five times. Not read — said, out loud, at conversational speed. These need to be reflexes, not lookups.</li>
+    </ol>
+    <p class="note">Item 3 is the one worth actually doing. A repair phrase you have to look up is not a repair phrase.</p>
+  </div>
+</section>
+
+<section id="grammar">
+  <h2>Part C — HSK 1–2 grammar, as frames</h2>
+
+  <div class="why">
+    <h4>Why frames rather than rules</h4>
+    <p>You have met all of this before. It is coming back, not going in — so the job is to give each pattern one clean slot-shaped form you can drop words into, rather than re-teach the reasoning behind it.</p>
+    <p>Read each frame, then say one sentence of your own out loud using it, about something in the room. Out loud.</p>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">主语 + 动词 + 宾语</span>
+    <span class="pinyin">Subject + Verb + Object</span>
+    <p class="use">The spine. Time and place go <em>before</em> the verb, not after — this is the word-order habit English speakers break most often.</p>
+    <div class="eg"><span class="han">我今天在家吃饭。</span><span class="tr">I'm eating at home today. (Not: I eat at home today — the time and place both precede the verb.)</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">A 是 B</span>
+    <span class="pinyin">A shì B</span>
+    <p class="use">Links two nouns. <strong>Never use 是 with an adjective.</strong> "I am tired" is not 我是累.</p>
+    <div class="eg"><span class="han">他是我爸爸。</span><span class="tr">He is my dad.</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">主语 + 很 + 形容词</span>
+    <span class="pinyin">Subject + hěn + adjective</span>
+    <p class="use">Adjectives act as their own verb. 很 is usually just a connector here and does not really mean "very" — 我很累 is "I'm tired," not "I'm very tired."</p>
+    <div class="eg"><span class="han">我很累。今天很冷。</span><span class="tr">I'm tired. It's cold today.</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">有 / 没有</span>
+    <span class="pinyin">yǒu / méiyǒu</span>
+    <p class="use">To have; to exist. The one verb negated with 没 rather than 不, always.</p>
+    <div class="eg"><span class="han">我没有时间。家里有人吗？</span><span class="tr">I don't have time. Is anyone home?</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">在 + 地方 / 在 + 动词</span>
+    <span class="pinyin">zài + place / zài + verb</span>
+    <p class="use">Two jobs. Before a place: located at. Before a verb: happening right now.</p>
+    <div class="eg"><span class="han">我在家。我在做饭。</span><span class="tr">I'm at home. I'm cooking.</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">动词 + 了</span>
+    <span class="pinyin">verb + le</span>
+    <p class="use">Marks a completed action. Not a past tense — it marks completion, which is why it turns up in sentences about the future too. Negate with 没 and <em>drop</em> the 了.</p>
+    <div class="eg"><span class="han">我吃了。我没吃。</span><span class="tr">I've eaten. I haven't eaten.</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">⋯⋯吗？ / ⋯⋯呢？</span>
+    <span class="pinyin">… ma? / … ne?</span>
+    <p class="use">吗 turns any statement into a yes/no question with no word-order change. 呢 bounces a question back: "and you?"</p>
+    <div class="eg"><span class="han">你累吗？我很好，你呢？</span><span class="tr">Are you tired? I'm good, and you?</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">动词 + 不 + 动词</span>
+    <span class="pinyin">V + bu + V</span>
+    <p class="use">The other yes/no question. 你去不去？ is the same question as 你去吗？ and sounds more natural in speech.</p>
+    <div class="eg"><span class="han">你要不要喝茶？</span><span class="tr">Do you want tea?</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">想 / 要 / 会 / 能 / 可以</span>
+    <span class="pinyin">xiǎng / yào / huì / néng / kěyǐ</span>
+    <p class="use">想 = would like to. 要 = want to, will (stronger, sometimes blunt). 会 = know how to, or will (future). 能 = physically able to. 可以 = permitted to.</p>
+    <div class="eg"><span class="han">我想学中文。我会说一点儿。</span><span class="tr">I'd like to learn Chinese. I can speak a little.</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">有点儿 vs 一点儿</span>
+    <span class="pinyin">yǒudiǎnr vs yìdiǎnr</span>
+    <p class="use">This is the HSK 2 trap. <strong>有点儿 goes before an adjective</strong> and carries a note of complaint: 有点儿贵 (a bit too expensive). <strong>一点儿 goes after</strong> and is neutral comparison: 便宜一点儿 (a bit cheaper). Swapping them is the single most common HSK 2 error.</p>
+    <div class="eg"><span class="han">今天有点儿冷。请说慢一点儿。</span><span class="tr">It's a bit cold today (and I don't love it). Please speak a bit slower.</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">A 比 B + 形容词</span>
+    <span class="pinyin">A bǐ B + adjective</span>
+    <p class="use">Comparison. No 很 in this pattern — 我比你高, never 我比你很高.</p>
+    <div class="eg"><span class="han">今天比昨天冷。</span><span class="tr">Today is colder than yesterday.</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">太⋯⋯了</span>
+    <span class="pinyin">tài … le</span>
+    <p class="use">Too / so. The 了 is not optional in speech.</p>
+    <div class="eg"><span class="han">太好了！这个菜太好吃了。</span><span class="tr">That's great! This dish is so good.</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">⋯⋯的时候</span>
+    <span class="pinyin">… de shíhou</span>
+    <p class="use">When / while. The whole clause comes first, then 的时候, then the main sentence.</p>
+    <div class="eg"><span class="han">我小的时候住在这儿。</span><span class="tr">When I was small I lived here.</span></div>
+  </div>
+
+  <div class="frame">
+    <span class="pattern">数 + 量词 + 名词</span>
+    <span class="pinyin">number + measure word + noun</span>
+    <p class="use">You cannot count a noun directly. The ones you need at home: 个 (general), 位 (people, polite), 杯 (cups), 碗 (bowls), 双 (pairs), 件 (clothes), 张 (flat things), 只 (animals), 本 (books), 条 (long things).</p>
+    <div class="eg"><span class="han">两杯茶，一碗饭。</span><span class="tr">Two cups of tea, one bowl of rice. (Note 两, not 二, before a measure word.)</span></div>
+  </div>
+
+  <div class="gate">
+    <h4>Checkpoint C</h4>
+    <ol>
+      <li>Say aloud: "I'm a bit tired today." Check it against the 有点儿 frame — the 有点儿 must come <em>before</em> 累. (我今天有点儿累。)</li>
+      <li>Say aloud: "I haven't eaten yet." Check it against the 了 frame — did you correctly drop the 了 when you negated? (我还没吃。)</li>
+      <li>Say aloud one sentence using 的时候 about your childhood. Check the order: clause, then 的时候, then the rest.</li>
+    </ol>
+    <p class="note">Items 1 and 2 are the two errors most likely to survive from your earlier study. Say them, then actually check them against the frame rather than assuming.</p>
+  </div>
+</section>
+
+<section id="words">
+  <h2>Part D — The words that actually come up at home</h2>
+
+  <div class="why">
+    <h4>Why this list is not the HSK 1–2 list</h4>
+    <p>The HSK 1–2 wordlists are built for a student's life: classrooms, teachers, classmates, plane tickets, hotels. That vocabulary is fine and you will meet it again. It is not what gets spoken between parents and their adult child.</p>
+    <p>What follows is HSK 1–2 vocabulary <em>filtered and reweighted</em> for the actual setting: family, food, health, home, weather, time, feeling. Roughly 150 words. It is deliberately smaller than a full HSK 2 list, because a small set you can produce beats a large set you can only recognise.</p>
+  </div>
+
+  <p class="look">Reading the tables: characters on the left, pinyin with tone marks in the middle, meaning on the right. Where a word has a common alternative that your parents may use instead, both are given in the meaning column — regional variation in family terms is large and neither form is more correct.</p>
+
+  <h3>Family</h3>
+  <table>
+    <thead><tr><th>Word</th><th>Pinyin</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td class="han">爸爸</td><td class="py">bàba</td><td>dad</td></tr>
+      <tr><td class="han">妈妈</td><td class="py">māma</td><td>mum</td></tr>
+      <tr><td class="han">父母</td><td class="py">fùmǔ</td><td>parents (as a pair, more formal)</td></tr>
+      <tr><td class="han">家人</td><td class="py">jiārén</td><td>family members</td></tr>
+      <tr><td class="han">爷爷 / 奶奶</td><td class="py">yéye / nǎinai</td><td>father's father / father's mother</td></tr>
+      <tr><td class="han">外公 / 外婆</td><td class="py">wàigōng / wàipó</td><td>mother's father / mother's mother (northern speakers often say 姥爷 lǎoye / 姥姥 lǎolao)</td></tr>
+      <tr><td class="han">哥哥 / 姐姐</td><td class="py">gēge / jiějie</td><td>older brother / older sister</td></tr>
+      <tr><td class="han">弟弟 / 妹妹</td><td class="py">dìdi / mèimei</td><td>younger brother / younger sister</td></tr>
+      <tr><td class="han">儿子 / 女儿</td><td class="py">érzi / nǚ'ér</td><td>son / daughter</td></tr>
+      <tr><td class="han">孩子</td><td class="py">háizi</td><td>child, kids</td></tr>
+      <tr><td class="han">叔叔 / 阿姨</td><td class="py">shūshu / āyí</td><td>uncle / aunt — also used for any adult of that generation</td></tr>
+      <tr><td class="han">朋友</td><td class="py">péngyou</td><td>friend</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Food and eating</h3>
+  <table>
+    <thead><tr><th>Word</th><th>Pinyin</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td class="han">吃 / 喝</td><td class="py">chī / hē</td><td>to eat / to drink</td></tr>
+      <tr><td class="han">吃饭</td><td class="py">chīfàn</td><td>to have a meal</td></tr>
+      <tr><td class="han">饭</td><td class="py">fàn</td><td>rice; a meal</td></tr>
+      <tr><td class="han">菜</td><td class="py">cài</td><td>a dish; vegetables</td></tr>
+      <tr><td class="han">做饭</td><td class="py">zuòfàn</td><td>to cook</td></tr>
+      <tr><td class="han">好吃 / 好喝</td><td class="py">hǎochī / hǎohē</td><td>tasty (food) / tasty (drink)</td></tr>
+      <tr><td class="han">饿 / 饱</td><td class="py">è / bǎo</td><td>hungry / full</td></tr>
+      <tr><td class="han">水 / 茶 / 汤</td><td class="py">shuǐ / chá / tāng</td><td>water / tea / soup</td></tr>
+      <tr><td class="han">肉 / 鱼 / 鸡蛋</td><td class="py">ròu / yú / jīdàn</td><td>meat / fish / egg</td></tr>
+      <tr><td class="han">水果 / 苹果</td><td class="py">shuǐguǒ / píngguǒ</td><td>fruit / apple</td></tr>
+      <tr><td class="han">早饭 / 午饭 / 晚饭</td><td class="py">zǎofàn / wǔfàn / wǎnfàn</td><td>breakfast / lunch / dinner</td></tr>
+      <tr><td class="han">再来一点儿</td><td class="py">zài lái yìdiǎnr</td><td>a bit more, please</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Health and the body</h3>
+  <table>
+    <thead><tr><th>Word</th><th>Pinyin</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td class="han">身体</td><td class="py">shēntǐ</td><td>body; health</td></tr>
+      <tr><td class="han">累</td><td class="py">lèi</td><td>tired</td></tr>
+      <tr><td class="han">病 / 生病</td><td class="py">bìng / shēngbìng</td><td>illness / to fall ill</td></tr>
+      <tr><td class="han">疼</td><td class="py">téng</td><td>to hurt, be sore</td></tr>
+      <tr><td class="han">医生 / 医院</td><td class="py">yīshēng / yīyuàn</td><td>doctor / hospital</td></tr>
+      <tr><td class="han">药</td><td class="py">yào</td><td>medicine</td></tr>
+      <tr><td class="han">休息</td><td class="py">xiūxi</td><td>to rest</td></tr>
+      <tr><td class="han">睡觉</td><td class="py">shuìjiào</td><td>to sleep</td></tr>
+      <tr><td class="han">小心</td><td class="py">xiǎoxīn</td><td>be careful</td></tr>
+      <tr><td class="han">保重</td><td class="py">bǎozhòng</td><td>take care of yourself</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Home and daily life</h3>
+  <table>
+    <thead><tr><th>Word</th><th>Pinyin</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td class="han">家</td><td class="py">jiā</td><td>home; family</td></tr>
+      <tr><td class="han">房子 / 房间</td><td class="py">fángzi / fángjiān</td><td>house / room</td></tr>
+      <tr><td class="han">工作</td><td class="py">gōngzuò</td><td>work, job</td></tr>
+      <tr><td class="han">忙</td><td class="py">máng</td><td>busy</td></tr>
+      <tr><td class="han">买 / 卖</td><td class="py">mǎi / mài</td><td>to buy / to sell — third tone buys, fourth tone sells</td></tr>
+      <tr><td class="han">钱</td><td class="py">qián</td><td>money</td></tr>
+      <tr><td class="han">打电话</td><td class="py">dǎ diànhuà</td><td>to make a phone call</td></tr>
+      <tr><td class="han">回家</td><td class="py">huí jiā</td><td>to go home</td></tr>
+      <tr><td class="han">出去 / 进来</td><td class="py">chūqù / jìnlái</td><td>to go out / to come in</td></tr>
+      <tr><td class="han">开车 / 走路</td><td class="py">kāichē / zǒulù</td><td>to drive / to walk</td></tr>
+      <tr><td class="han">洗</td><td class="py">xǐ</td><td>to wash</td></tr>
+      <tr><td class="han">帮</td><td class="py">bāng</td><td>to help</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Time</h3>
+  <table>
+    <thead><tr><th>Word</th><th>Pinyin</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td class="han">今天 / 昨天 / 明天</td><td class="py">jīntiān / zuótiān / míngtiān</td><td>today / yesterday / tomorrow</td></tr>
+      <tr><td class="han">早上 / 中午 / 晚上</td><td class="py">zǎoshang / zhōngwǔ / wǎnshang</td><td>morning / midday / evening</td></tr>
+      <tr><td class="han">现在</td><td class="py">xiànzài</td><td>now</td></tr>
+      <tr><td class="han">以前 / 以后</td><td class="py">yǐqián / yǐhòu</td><td>before, in the past / after, in future</td></tr>
+      <tr><td class="han">最近</td><td class="py">zuìjìn</td><td>recently, lately</td></tr>
+      <tr><td class="han">星期</td><td class="py">xīngqī</td><td>week</td></tr>
+      <tr><td class="han">时间</td><td class="py">shíjiān</td><td>time</td></tr>
+      <tr><td class="han">常常 / 有时候</td><td class="py">chángcháng / yǒu shíhou</td><td>often / sometimes</td></tr>
+      <tr><td class="han">已经</td><td class="py">yǐjīng</td><td>already</td></tr>
+      <tr><td class="han">还</td><td class="py">hái</td><td>still, yet</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Weather and feeling</h3>
+  <table>
+    <thead><tr><th>Word</th><th>Pinyin</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td class="han">天气</td><td class="py">tiānqì</td><td>weather</td></tr>
+      <tr><td class="han">冷 / 热</td><td class="py">lěng / rè</td><td>cold / hot</td></tr>
+      <tr><td class="han">下雨 / 下雪</td><td class="py">xià yǔ / xià xuě</td><td>to rain / to snow</td></tr>
+      <tr><td class="han">高兴</td><td class="py">gāoxìng</td><td>happy, glad</td></tr>
+      <tr><td class="han">开心</td><td class="py">kāixīn</td><td>happy, cheerful (warmer, more everyday)</td></tr>
+      <tr><td class="han">难过</td><td class="py">nánguò</td><td>sad, upset</td></tr>
+      <tr><td class="han">想</td><td class="py">xiǎng</td><td>to miss someone; to think; would like to</td></tr>
+      <tr><td class="han">担心</td><td class="py">dānxīn</td><td>to worry</td></tr>
+      <tr><td class="han">喜欢</td><td class="py">xǐhuan</td><td>to like</td></tr>
+      <tr><td class="han">觉得</td><td class="py">juéde</td><td>to feel that, to think</td></tr>
+      <tr><td class="han">希望</td><td class="py">xīwàng</td><td>to hope</td></tr>
+      <tr><td class="han">谢谢 / 对不起 / 没关系</td><td class="py">xièxie / duìbuqǐ / méi guānxi</td><td>thanks / sorry / it's fine</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Question words</h3>
+  <table>
+    <thead><tr><th>Word</th><th>Pinyin</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td class="han">什么</td><td class="py">shénme</td><td>what</td></tr>
+      <tr><td class="han">谁</td><td class="py">shéi (also shuí)</td><td>who</td></tr>
+      <tr><td class="han">哪儿 / 哪里</td><td class="py">nǎr / nǎlǐ</td><td>where</td></tr>
+      <tr><td class="han">什么时候</td><td class="py">shénme shíhou</td><td>when</td></tr>
+      <tr><td class="han">为什么</td><td class="py">wèi shénme</td><td>why</td></tr>
+      <tr><td class="han">怎么</td><td class="py">zěnme</td><td>how (in what way)</td></tr>
+      <tr><td class="han">怎么样</td><td class="py">zěnmeyàng</td><td>how is it / how about it</td></tr>
+      <tr><td class="han">多少 / 几</td><td class="py">duōshao / jǐ</td><td>how many (large) / how many (small, under ten)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="why">
+    <h4>The word doing the most work here</h4>
+    <p>怎么样 <span class="py">zěnmeyàng</span>. It attaches to almost anything and produces a real question: 你最近怎么样？ 工作怎么样？ 身体怎么样？ 天气怎么样？ If you only take one word out of this table, take that one — it opens conversations rather than closing them, which is the opposite of what yes/no questions do.</p>
+  </div>
+
+  <div class="gate">
+    <h4>Checkpoint D</h4>
+    <ol>
+      <li>Cover the pinyin column of the Family table and read the characters aloud. Uncover and check. Recognising them counts as a pass.</li>
+      <li>Say aloud three 怎么样 questions you could genuinely ask your parents this week.</li>
+      <li>Say 买 and 卖 aloud, one after the other. If they sound the same, that is a tone problem rather than a vocabulary problem — third tone dips and rises, fourth tone falls hard.</li>
+    </ol>
+    <p class="note">Do not try to hold this whole table. It is a reference. The words you actually use will stick from use, and the rest are here for when you need them.</p>
+  </div>
+</section>
+
+<section id="openers">
+  <h2>Part E — Ten things you can say this week</h2>
+
+  <div class="why">
+    <h4>Why whole sentences rather than building blocks</h4>
+    <p>Building a sentence from grammar under time pressure is slow, and the pause is where conversations die. Whole memorised openers cost you nothing at the moment of speaking and buy the time your parents need to shift into Chinese with you.</p>
+    <p>These are not exercises. They are things to actually say. Pick two, use them this week, and let the rest wait.</p>
+  </div>
+
+  <div class="phrase">
+    <span class="cn">你吃了吗？</span>
+    <span class="pi">Nǐ chī le ma?</span>
+    <span class="en">Have you eaten?</span>
+    <span class="when">Functions as a greeting more than a question about food. One of the most natural things you can open with, and it will be immediately recognised as such.</span>
+  </div>
+
+  <div class="phrase">
+    <span class="cn">你最近怎么样？</span>
+    <span class="pi">Nǐ zuìjìn zěnmeyàng?</span>
+    <span class="en">How have you been lately?</span>
+    <span class="when">Open question, invites a real answer. Follow it with 呢？ to bounce back when they ask you.</span>
+  </div>
+
+  <div class="phrase">
+    <span class="cn">你身体好吗？</span>
+    <span class="pi">Nǐ shēntǐ hǎo ma?</span>
+    <span class="en">How's your health?</span>
+    <span class="when">Not intrusive in Chinese the way it can read in English — asking after health is ordinary care between family.</span>
+  </div>
+
+  <div class="phrase">
+    <span class="cn">你今天做了什么？</span>
+    <span class="pi">Nǐ jīntiān zuò le shénme?</span>
+    <span class="en">What did you do today?</span>
+    <span class="when">Uses the 了 completion marker from Part C. Note the 了 sits on the verb, not at the end.</span>
+  </div>
+
+  <div class="phrase">
+    <span class="cn">我今天很忙，但是还好。</span>
+    <span class="pi">Wǒ jīntiān hěn máng, dànshì hái hǎo.</span>
+    <span class="en">I've been busy today, but I'm alright.</span>
+    <span class="when">A ready-made answer to the question you will get back. Having your own answer prepared is half of what makes a conversation feel possible.</span>
+  </div>
+
+  <div class="phrase">
+    <span class="cn">这个菜真好吃，是你做的吗？</span>
+    <span class="pi">Zhège cài zhēn hǎochī, shì nǐ zuò de ma?</span>
+    <span class="en">This is really good — did you make it?</span>
+    <span class="when">Uses the 是⋯⋯的 focus pattern (Phase 1, Part C). Food is the safest and richest conversational territory available to you; use it.</span>
+  </div>
+
+  <div class="phrase">
+    <span class="cn">外面很冷，你多穿一点儿。</span>
+    <span class="pi">Wàimiàn hěn lěng, nǐ duō chuān yìdiǎnr.</span>
+    <span class="en">It's cold out — put on another layer.</span>
+    <span class="when">Care expressed as instruction is completely normal register between family in Chinese. This will land warmly, not bossily.</span>
+  </div>
+
+  <div class="phrase">
+    <span class="cn">我很想你们。</span>
+    <span class="pi">Wǒ hěn xiǎng nǐmen.</span>
+    <span class="en">I miss you both.</span>
+    <span class="when">想 does the work of "miss" with no extra verb. Short, direct, and difficult to say by accident — which is rather the point of learning it deliberately.</span>
+  </div>
+
+  <div class="phrase">
+    <span class="cn">这个用中文怎么说？</span>
+    <span class="pi">Zhège yòng Zhōngwén zěnme shuō?</span>
+    <span class="en">How do you say this in Chinese?</span>
+    <span class="when">Repeated from Part B on purpose. Pointing at an object and asking this turns any room into a lesson, and it puts your parents in the role of teacher, which most parents enjoy.</span>
+  </div>
+
+  <div class="phrase">
+    <span class="cn">我想跟你们多说中文。</span>
+    <span class="pi">Wǒ xiǎng gēn nǐmen duō shuō Zhōngwén.</span>
+    <span class="en">I want to speak more Chinese with you.</span>
+    <span class="when">Say this one first, before any of the others. It sets the terms for everything that follows, and it is the sentence most likely to change how the next year of conversations goes.</span>
+  </div>
+
+  <div class="gate">
+    <h4>Checkpoint E</h4>
+    <ol>
+      <li>Pick two from the ten. Say each aloud five times until it runs without stopping.</li>
+      <li>Say aloud what your answer would be if your parents replied to 你最近怎么样？ with a question back. If you don't have one, build it now from the Part C frames — a prepared answer is not cheating.</li>
+      <li>Decide when this week you will use them, and with which parent. Say the day out loud. An undated intention is not a plan.</li>
+    </ol>
+    <p class="note">Item 3 is the checkpoint that matters. Everything else in this manual is preparation for it.</p>
+  </div>
+</section>
+
+<section id="quiz">
+  <h2>Part F — Recognition warm-up</h2>
+
+  <div class="why">
+    <h4>What this measures and what it doesn't</h4>
+    <p>Fifty HSK 1–2 items, shown as characters, answered by picking the meaning. Recognition, deliberately — it is the honest measure of what has survived from your earlier study, and it will show you which tables to go back to.</p>
+    <p>Getting one wrong means one thing: reread that row. It does not mean anything else.</p>
+  </div>
+
+  <p class="look">Where to look: the word appears large in the middle of the box below, with four answers stacked underneath. Feedback appears under the buttons after you answer; "Next word" and the running score sit at the bottom-left.</p>
+
+  <div id="quizbox" class="noprint">
+    <div id="qprompt">—</div>
+    <p id="qtask">Which meaning belongs to this word?</p>
+    <div class="opts" id="opts"></div>
+    <p id="qfeedback"></p>
+    <div class="quizbar">
+      <button class="act" id="next">Next word</button>
+      <button class="act ghost" id="restart">Start over</button>
+      <span id="score">0 answered</span>
+    </div>
+  </div>
+
+  <div class="gate">
+    <h4>Checkpoint F</h4>
+    <ol>
+      <li>Answer twenty. The quiz takes about four minutes.</li>
+      <li>Write down — on paper, not mentally — every word you missed. That list is your actual revision set, and it will be much shorter than you fear.</li>
+      <li>Stop at twenty even if you want to continue. Ending on a finished chunk beats a long blurred session.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="next">
+  <h2>Where this sits</h2>
+  <p>Phase 0 is this document: reactivating HSK 1–2 and getting you into live conversation as fast as possible. Phase 1 is the reading manual — radicals, sound families, HSK 3 frames, tone pairs. Phase 2 is handwriting, which you have chosen to defer.</p>
+  <p>Stated plainly, because it is the whole strategy: Part B and Part E of this document are the ones that move you toward actual conversations with your parents. Everything else supports them. If you only ever do two sections of this manual, do those two.</p>
+  <p>Nothing here needs finishing before you start talking. The conversations are the method, not the reward for completing the method.</p>
+</section>
+
+<footer>
+  <p>Mandarin Field Manual, Phase 0 · built 1 September 2026 · offline, single file, no dependencies · prints without the quiz</p>
+  <p>Regional variation in family terms is real and not an error: if your parents use different words for grandparents or aunts and uncles than the ones listed, theirs are the correct ones for your family.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var BANK = [
+    {c:"爸爸", a:"dad", d:["mum","older brother","son"]},
+    {c:"妈妈", a:"mum", d:["dad","older sister","daughter"]},
+    {c:"家人", a:"family members", d:["friend","neighbour","guest"]},
+    {c:"孩子", a:"child, kids", d:["parents","adult","student"]},
+    {c:"哥哥", a:"older brother", d:["younger brother","older sister","uncle"]},
+    {c:"妹妹", a:"younger sister", d:["older sister","younger brother","daughter"]},
+    {c:"爷爷", a:"father's father", d:["mother's father","father's mother","uncle"]},
+    {c:"奶奶", a:"father's mother", d:["mother's mother","older sister","aunt"]},
+    {c:"阿姨", a:"aunt; woman of that generation", d:["uncle","grandmother","cousin"]},
+    {c:"吃饭", a:"to have a meal", d:["to cook","to drink","to rest"]},
+    {c:"做饭", a:"to cook", d:["to eat","to wash up","to buy food"]},
+    {c:"好吃", a:"tasty (of food)", d:["hungry","full","expensive"]},
+    {c:"饿", a:"hungry", d:["full","thirsty","tired"]},
+    {c:"饱", a:"full, sated", d:["hungry","hot","happy"]},
+    {c:"喝", a:"to drink", d:["to eat","to speak","to buy"]},
+    {c:"茶", a:"tea", d:["water","soup","rice"]},
+    {c:"汤", a:"soup", d:["tea","sugar","fish"]},
+    {c:"鸡蛋", a:"egg", d:["chicken","fish","meat"]},
+    {c:"水果", a:"fruit", d:["vegetables","water","juice"]},
+    {c:"晚饭", a:"dinner", d:["breakfast","lunch","snack"]},
+    {c:"身体", a:"body; health", d:["mind","feeling","face"]},
+    {c:"累", a:"tired", d:["busy","sad","hungry"]},
+    {c:"疼", a:"to hurt, be sore", d:["to rest","to be ill","to worry"]},
+    {c:"生病", a:"to fall ill", d:["to recover","to rest","to see a doctor"]},
+    {c:"医生", a:"doctor", d:["hospital","medicine","nurse"]},
+    {c:"药", a:"medicine", d:["doctor","illness","tea"]},
+    {c:"休息", a:"to rest", d:["to sleep","to work","to wait"]},
+    {c:"睡觉", a:"to sleep", d:["to rest","to wake up","to dream"]},
+    {c:"小心", a:"be careful", d:["take care of yourself","don't worry","hurry up"]},
+    {c:"家", a:"home; family", d:["room","house (building)","room-mate"]},
+    {c:"工作", a:"work, job", d:["busy","company","money"]},
+    {c:"忙", a:"busy", d:["tired","free","late"]},
+    {c:"买", a:"to buy", d:["to sell","to pay","to borrow"]},
+    {c:"卖", a:"to sell", d:["to buy","to give","to lend"]},
+    {c:"钱", a:"money", d:["price","shop","work"]},
+    {c:"打电话", a:"to make a phone call", d:["to send a message","to visit","to answer"]},
+    {c:"回家", a:"to go home", d:["to go out","to arrive","to move house"]},
+    {c:"帮", a:"to help", d:["to give","to teach","to wait"]},
+    {c:"今天", a:"today", d:["yesterday","tomorrow","this week"]},
+    {c:"昨天", a:"yesterday", d:["today","tomorrow","last week"]},
+    {c:"最近", a:"recently, lately", d:["now","before","soon"]},
+    {c:"以前", a:"before, in the past", d:["after, in future","now","already"]},
+    {c:"已经", a:"already", d:["still, yet","often","sometimes"]},
+    {c:"常常", a:"often", d:["sometimes","never","already"]},
+    {c:"天气", a:"weather", d:["sky","season","temperature"]},
+    {c:"冷", a:"cold", d:["hot","warm","cool"]},
+    {c:"下雨", a:"to rain", d:["to snow","to be windy","to be sunny"]},
+    {c:"高兴", a:"happy, glad", d:["sad","worried","tired"]},
+    {c:"难过", a:"sad, upset", d:["happy","angry","bored"]},
+    {c:"担心", a:"to worry", d:["to hope","to like","to feel"]},
+    {c:"喜欢", a:"to like", d:["to hope","to miss","to think"]},
+    {c:"觉得", a:"to feel that, to think", d:["to hope","to know","to say"]},
+    {c:"希望", a:"to hope", d:["to worry","to like","to want"]},
+    {c:"怎么样", a:"how is it / how about it", d:["why","when","how many"]},
+    {c:"为什么", a:"why", d:["what","how","where"]},
+    {c:"什么时候", a:"when", d:["where","how long","how often"]},
+    {c:"哪儿", a:"where", d:["who","what","when"]},
+    {c:"多少", a:"how many / how much", d:["how","why","which"]},
+    {c:"听不懂", a:"to hear but not understand", d:["to not hear","to understand","to forget"]},
+    {c:"明白", a:"to understand", d:["to explain","to remember","to ask"]}
+  ];
+
+  var order=[],idx=-1,answered=0,correct=0,locked=false;
+  var prompt=document.getElementById("qprompt");
+  var optsEl=document.getElementById("opts");
+  var fb=document.getElementById("qfeedback");
+  var scoreEl=document.getElementById("score");
+
+  function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+  function build(){
+    order=shuffle(BANK.map(function(_,i){return i;}));
+    idx=-1;answered=0;correct=0;
+    scoreEl.textContent="0 answered";
+    fb.textContent="";
+    nextQ();
+  }
+
+  function nextQ(){
+    idx++;
+    if(idx>=order.length){order=shuffle(order);idx=0;}
+    var q=BANK[order[idx]];
+    locked=false;
+    prompt.textContent=q.c;
+    fb.textContent="";
+    optsEl.innerHTML="";
+    shuffle([q.a].concat(q.d.slice(0,3))).forEach(function(text){
+      var b=document.createElement("button");
+      b.className="opt";b.type="button";b.textContent=text;
+      b.addEventListener("click",function(){answer(b,text,q);});
+      optsEl.appendChild(b);
+    });
+  }
+
+  function answer(btn,text,q){
+    if(locked)return;
+    locked=true;answered++;
+    var buttons=optsEl.querySelectorAll("button");
+    for(var i=0;i<buttons.length;i++){
+      buttons[i].disabled=true;
+      if(buttons[i].textContent===q.a)buttons[i].classList.add("right");
+    }
+    if(text===q.a){correct++;btn.classList.add("right");fb.textContent="Correct.";}
+    else{btn.classList.add("wrong");fb.textContent="Not that one. "+q.c+" means: "+q.a+" — write it down for your revision set.";}
+    scoreEl.textContent=correct+" of "+answered+" correct";
+  }
+
+  document.getElementById("next").addEventListener("click",nextQ);
+  document.getElementById("restart").addEventListener("click",build);
+  build();
+})();
+</script>
+
+<script id="py-layer-script">
+(function(){
+  var WORDS = {"这个":"zhège","那个":"nàge","这些":"zhèxiē","那些":"nàxiē","几个":"jǐ ge","觉得": "juéde", "睡觉": "shuìjiào", "便宜": "piányi", "意思": "yìsi", "休息": "xiūxi", "朋友": "péngyou", "喜欢": "xǐhuan", "时候": "shíhou", "什么": "shénme", "怎么": "zěnme", "妈妈": "māma", "爸爸": "bàba", "姐姐": "jiějie", "哥哥": "gēge", "弟弟": "dìdi", "妹妹": "mèimei", "爷爷": "yéye", "奶奶": "nǎinai", "姥姥": "lǎolao", "姥爷": "lǎoye", "舅舅": "jiùjiu", "叔叔": "shūshu", "姑姑": "gūgu", "伯伯": "bóbo", "孩子": "háizi", "儿子": "érzi", "女儿": "nǚ'ér", "房子": "fángzi", "桌子": "zhuōzi", "椅子": "yǐzi", "明白": "míngbai", "稀罕": "xīhan", "得瑟": "dèse", "埋汰": "máitai", "唠嗑": "làokē", "嘎哈": "gáhá", "干哈": "gànhá", "医生": "yīshēng", "一点儿": "yìdiǎnr", "有点儿": "yǒudiǎnr", "一下": "yíxià", "一遍": "yíbiàn", "一个": "yíge", "一样": "yíyàng", "一天": "yìtiān", "一年": "yìnián", "一起": "yìqǐ", "一边": "yìbiān", "一会儿": "yíhuìr", "不是": "búshì", "不去": "búqù", "不太": "bútài", "不要": "búyào", "不对": "búduì", "不会": "búhuì", "不用": "búyòng", "对不起": "duìbuqǐ", "没关系": "méiguānxi", "关系": "guānxi", "谢谢": "xièxie", "东北": "Dōngběi", "中国": "Zhōngguó", "中文": "Zhōngwén", "北京": "Běijīng", "浙江": "Zhèjiāng", "沈阳": "Shěnyáng", "辽宁": "Liáoníng", "建德": "Jiàndé", "梅城": "Méichéng", "新安江": "Xīn'ānjiāng", "婺州": "Wùzhōu", "交通": "jiāotōng", "大学": "dàxué", "汉语": "Hànyǔ", "知道": "zhīdào", "电视": "diànshì", "电话": "diànhuà", "电脑": "diànnǎo", "好玩儿": "hǎowánr", "味儿": "wèir", "这儿": "zhèr", "哪儿": "nǎr", "多少": "duōshao", "因为": "yīnwèi", "为什么": "wèishénme", "干什么": "gàn shénme", "地方": "dìfang", "发音": "fāyīn", "变调": "biàndiào", "声调": "shēngdiào", "量词": "liàngcí", "过得": "guòde", "结果": "jiéguǒ", "还好": "háihǎo", "东西": "dōngxi", "认识": "rènshi", "先生": "xiānsheng", "学生": "xuésheng", "衣服": "yīfu", "我们": "wǒmen", "你们": "nǐmen", "他们": "tāmen", "咱们": "zánmen", "水果": "shuǐguǒ", "苹果": "píngguǒ", "鸡蛋": "jīdàn", "早饭": "zǎofàn", "午饭": "wǔfàn", "晚饭": "wǎnfàn", "身体": "shēntǐ", "高兴": "gāoxìng", "开心": "kāixīn", "难过": "nánguò", "担心": "dānxīn", "希望": "xīwàng", "天气": "tiānqì", "下雨": "xià yǔ", "下雪": "xià xuě", "今天": "jīntiān", "昨天": "zuótiān", "明天": "míngtiān", "早上": "zǎoshang", "中午": "zhōngwǔ", "晚上": "wǎnshang", "现在": "xiànzài", "以前": "yǐqián", "以后": "yǐhòu", "最近": "zuìjìn", "星期": "xīngqī", "时间": "shíjiān", "常常": "chángcháng", "已经": "yǐjīng", "工作": "gōngzuò", "打电话": "dǎ diànhuà", "回家": "huí jiā", "出去": "chūqù", "进来": "jìnlái", "开车": "kāichē", "走路": "zǒulù", "眼睛": "yǎnjing", "号码": "hàomǎ", "生病": "shēngbìng", "医院": "yīyuàn", "小心": "xiǎoxīn", "保重": "bǎozhòng", "家人": "jiārén", "父母": "fùmǔ", "外公": "wàigōng", "外婆": "wàipó", "阿姨": "āyí", "舅妈": "jiùmā", "姨妈": "yímā", "姨父": "yífu", "继父": "jìfù", "学校": "xuéxiào", "学习": "xuéxí", "复习": "fùxí", "老师": "lǎoshī", "起床": "qǐchuáng", "考试": "kǎoshì", "汽车": "qìchē", "再见": "zàijiàn", "啤酒": "píjiǔ", "做饭": "zuòfàn", "吃饭": "chīfàn", "好吃": "hǎochī", "好喝": "hǎohē", "怎么样": "zěnmeyàng", "哪里": "nǎlǐ", "有时候": "yǒu shíhou", "除了": "chúle", "以外": "yǐwài", "虽然": "suīrán", "但是": "dànshì", "所以": "suǒyǐ", "越来越": "yuè lái yuè", "快要": "kuàiyào", "就要": "jiùyào", "作业": "zuòyè", "写完": "xiěwán", "手机": "shǒujī", "拿走": "názǒu", "飞机": "fēijī", "火车": "huǒchē", "冷": "lěng", "好不好": "hǎo bu hǎo", "要不要": "yào bu yào", "听不懂": "tīng bu dǒng", "看电视": "kàn diànshì", "外面": "wàimiàn", "真": "zhēn", "形声": "xíngshēng", "声旁": "shēngpáng", "口音": "kǒuyīn", "北方": "běifāng", "南方": "nánfāng", "军人": "jūnrén", "名字": "míngzi", "东北话": "Dōngběihuà"};
+  var CHARS = {"一": "yī", "七": "qī", "上": "shàng", "下": "xià", "不": "bù", "业": "yè", "东": "dōng", "丝": "sī", "两": "liǎng", "个": "gè", "中": "zhōng", "为": "wèi", "主": "zhǔ", "么": "me", "也": "yě", "习": "xí", "买": "mǎi", "了": "le", "二": "èr", "人": "rén", "亻": "rén", "什": "shén", "今": "jīn", "他": "tā", "以": "yǐ", "们": "men", "件": "jiàn", "休": "xiū", "会": "huì", "伯": "bó", "但": "dàn", "位": "wèi", "住": "zhù", "体": "tǐ", "作": "zuò", "你": "nǐ", "便": "biàn", "保": "bǎo", "候": "hòu", "做": "zuò", "儿": "ér", "公": "gōng", "六": "liù", "关": "guān", "兴": "xìng", "再": "zài", "写": "xiě", "冷": "lěng", "几": "jǐ", "出": "chū", "刀": "dāo", "刂": "dāo", "别": "bié", "到": "dào", "刻": "kè", "前": "qián", "剩": "shèng", "力": "lì", "功": "gōng", "加": "jiā", "动": "dòng", "助": "zhù", "包": "bāo", "北": "běi", "医": "yī", "十": "shí", "午": "wǔ", "卖": "mài", "去": "qù", "友": "yǒu", "双": "shuāng", "发": "fā", "叔": "shū", "变": "biàn", "口": "kǒu", "只": "zhǐ", "叫": "jiào", "可": "kě", "号": "hào", "吃": "chī", "名": "míng", "后": "hòu", "吗": "ma", "吧": "ba", "听": "tīng", "呢": "ne", "味": "wèi", "咋": "zǎ", "咱": "zán", "哈": "hā", "哥": "gē", "哪": "nǎ", "唠": "lào", "唱": "chàng", "啤": "pí", "喜": "xǐ", "喝": "hē", "嗑": "kē", "嘎": "gā", "四": "sì", "回": "huí", "因": "yīn", "国": "guó", "土": "tǔ", "在": "zài", "地": "dì", "场": "chǎng", "坐": "zuò", "块": "kuài", "埋": "mái", "城": "chéng", "声": "shēng", "复": "fù", "外": "wài", "多": "duō", "天": "tiān", "太": "tài", "女": "nǚ", "奶": "nǎi", "她": "tā", "好": "hǎo", "妈": "mā", "妹": "mèi", "姐": "jiě", "姑": "gū", "姓": "xìng", "姥": "lǎo", "姨": "yí", "娘": "niáng", "婆": "pó", "婺": "wù", "子": "zi", "字": "zì", "学": "xué", "孩": "hái", "宀": "mián", "宁": "níng", "安": "ān", "完": "wán", "宜": "yí", "客": "kè", "室": "shì", "家": "jiā", "容": "róng", "宾": "bīn", "对": "duì", "小": "xiǎo", "少": "shǎo", "就": "jiù", "山": "shān", "州": "zhōu", "工": "gōng", "已": "yǐ", "巴": "bā", "师": "shī", "希": "xī", "帮": "bāng", "常": "cháng", "干": "gàn", "年": "nián", "床": "chuáng", "建": "jiàn", "开": "kāi", "弟": "dì", "张": "zhāng", "形": "xíng", "彪": "biāo", "很": "hěn", "得": "de", "德": "dé", "心": "xīn", "忄": "xīn", "忙": "máng", "快": "kuài", "怎": "zěn", "怕": "pà", "思": "sī", "性": "xìng", "息": "xi", "情": "qíng", "想": "xiǎng", "意": "yì", "慢": "màn", "懂": "dǒng", "我": "wǒ", "房": "fáng", "所": "suǒ", "手": "shǒu", "扌": "shǒu", "打": "dǎ", "找": "zhǎo", "把": "bǎ", "报": "bào", "抱": "bào", "担": "dān", "拿": "ná", "提": "tí", "数": "shù", "整": "zhěng", "文": "wén", "新": "xīn", "方": "fāng", "旁": "páng", "日": "rì", "早": "zǎo", "时": "shí", "明": "míng", "星": "xīng", "春": "chūn", "昨": "zuó", "是": "shì", "晚": "wǎn", "晴": "qíng", "最": "zuì", "月": "yuè", "有": "yǒu", "朋": "péng", "服": "fú", "望": "wàng", "期": "qī", "木": "mù", "本": "běn", "机": "jī", "条": "tiáo", "来": "lái", "杯": "bēi", "林": "lín", "果": "guǒ", "树": "shù", "校": "xiào", "样": "yàng", "桌": "zhuō", "梅": "méi", "椅": "yǐ", "欢": "huān", "母": "mǔ", "比": "bǐ", "气": "qì", "水": "shuǐ", "氵": "shuǐ", "汉": "hàn", "江": "jiāng", "汤": "tāng", "汰": "tài", "汽": "qì", "沈": "shěn", "没": "méi", "河": "hé", "法": "fǎ", "泡": "pào", "洗": "xǐ", "浙": "zhè", "清": "qīng", "火": "huǒ", "灬": "huǒ", "炒": "chǎo", "炮": "pào", "点": "diǎn", "烧": "shāo", "热": "rè", "然": "rán", "照": "zhào", "爪": "zhǎo", "爬": "pá", "父": "fù", "爷": "yé", "爸": "bà", "玩": "wán", "现": "xiàn", "瑟": "sè", "生": "shēng", "用": "yòng", "电": "diàn", "疒": "nè", "疲": "pí", "疼": "téng", "病": "bìng", "痛": "tòng", "白": "bái", "的": "de", "目": "mù", "看": "kàn", "真": "zhēn", "眼": "yǎn", "睛": "jīng", "睡": "shuì", "知": "zhī", "石": "shí", "码": "mǎ", "硬": "yìng", "碗": "wǎn", "稀": "xī", "穴": "xué", "空": "kōng", "穿": "chuān", "等": "děng", "系": "xì", "累": "lèi", "纟": "sī", "红": "hóng", "纸": "zhǐ", "细": "xì", "经": "jīng", "结": "jié", "给": "gěi", "继": "jì", "罕": "hǎn", "老": "lǎo", "考": "kǎo", "耳": "ěr", "聊": "liáo", "职": "zhí", "肉": "ròu", "肚": "dù", "胖": "pàng", "能": "néng", "脑": "nǎo", "脸": "liǎn", "腿": "tuǐ", "舅": "jiù", "艹": "cǎo", "花": "huā", "苹": "píng", "茶": "chá", "草": "cǎo", "药": "yào", "菜": "cài", "虫": "chóng", "虽": "suī", "虾": "xiā", "蚊": "wén", "蛇": "shé", "蛋": "dàn", "行": "xíng", "被": "bèi", "要": "yào", "见": "jiàn", "视": "shì", "觉": "jué", "言": "yán", "讠": "yán", "词": "cí", "试": "shì", "话": "huà", "语": "yǔ", "说": "shuō", "请": "qǐng", "谁": "shéi", "调": "diào", "谢": "xiè", "贝": "bèi", "财": "cái", "贵": "guì", "费": "fèi", "贼": "zéi", "赢": "yíng", "走": "zǒu", "起": "qǐ", "越": "yuè", "足": "zú", "跑": "pǎo", "跟": "gēn", "路": "lù", "跳": "tiào", "身": "shēn", "车": "chē", "转": "zhuǎn", "轻": "qīng", "较": "jiào", "辆": "liàng", "辶": "chuò", "边": "biān", "辽": "liáo", "过": "guò", "近": "jìn", "还": "hái", "这": "zhè", "进": "jìn", "远": "yuǎn", "送": "sòng", "遍": "biàn", "道": "dào", "都": "dōu", "酒": "jiǔ", "里": "lǐ", "重": "zhòng", "量": "liàng", "金": "jīn", "钅": "jīn", "钟": "zhōng", "钱": "qián", "铁": "tiě", "银": "yín", "门": "mén", "问": "wèn", "间": "jiān", "闹": "nào", "闻": "wén", "阳": "yáng", "阿": "ā", "院": "yuàn", "除": "chú", "难": "nán", "雨": "yǔ", "雪": "xuě", "零": "líng", "雷": "léi", "需": "xū", "青": "qīng", "面": "miàn", "音": "yīn", "飞": "fēi", "食": "shí", "饣": "shí", "饭": "fàn", "饮": "yǐn", "饱": "bǎo", "饿": "è", "馆": "guǎn", "马": "mǎ", "骂": "mà", "高": "gāo", "鱼": "yú", "鸡": "jī", "货": "huò", "取": "qǔ", "聪": "cōng", "𧾷": "zú"};
+  var MAXW = 3;
+  function pinyinFor(run){
+    var out=[],i=0;
+    while(i<run.length){
+      var hit=null;
+      for(var L=Math.min(MAXW,run.length-i);L>1;L--){
+        var w=run.substr(i,L);
+        if(WORDS[w]){hit=[L,WORDS[w]];break;}
+      }
+      if(hit){out.push(hit[1]);i+=hit[0];}
+      else{var cp=run.codePointAt(i);var ch=String.fromCodePoint(cp);out.push(CHARS[ch]||"?");i+=ch.length;}
+    }
+    return out.join(" ");
+  }
+  var HAN=/\p{Script=Han}+/gu;
+  function wrap(root){
+    var walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+      var p=n.parentNode;
+      while(p&&p!==root){
+        if(p.nodeName==="SCRIPT"||p.nodeName==="STYLE"||p.id==="quizbox"||p.classList.contains("zh"))return NodeFilter.FILTER_REJECT;
+        p=p.parentNode;
+      }
+      return HAN.test(n.nodeValue)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;
+    }});
+    var nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+    nodes.forEach(function(n){
+      var text=n.nodeValue,frag=document.createDocumentFragment(),last=0,m;
+      HAN.lastIndex=0;
+      while((m=HAN.exec(text))){
+        if(m.index>last)frag.appendChild(document.createTextNode(text.slice(last,m.index)));
+        var s=document.createElement("span");
+        s.className="zh";s.setAttribute("data-py",pinyinFor(m[0]));s.textContent=m[0];
+        frag.appendChild(s);last=m.index+m[0].length;
+      }
+      if(last<text.length)frag.appendChild(document.createTextNode(text.slice(last)));
+      n.parentNode.replaceChild(frag,n);
+    });
+  }
+  var root=document.querySelector("div.wrap");
+  if(root)wrap(root);
+
+  // tap-to-toggle for touch (and works with mouse too)
+  document.addEventListener("click",function(e){
+    var t=e.target.closest(".zh");
+    var open=document.querySelectorAll(".zh.on");
+    for(var i=0;i<open.length;i++){if(open[i]!==t)open[i].classList.remove("on");}
+    if(t&&!document.body.classList.contains("py-off"))t.classList.toggle("on");
+  });
+
+  // mode toggle in the nav: hover → always → off
+  var modes=[["hover","Pinyin: hover / tap"],["always","Pinyin: always"],["off","Pinyin: off"]];
+  var mi=0;
+  var nav=document.querySelector("nav ul");
+  if(nav){
+    var li=document.createElement("li");li.className="pytoggle";
+    var b=document.createElement("button");b.type="button";b.textContent=modes[0][1];
+    b.setAttribute("aria-label","Cycle pinyin display mode");
+    b.addEventListener("click",function(){
+      mi=(mi+1)%modes.length;
+      document.body.classList.remove("py-always","py-off");
+      if(modes[mi][0]==="always")document.body.classList.add("py-always");
+      if(modes[mi][0]==="off")document.body.classList.add("py-off");
+      b.textContent=modes[mi][1];
+      var open=document.querySelectorAll(".zh.on");for(var i=0;i<open.length;i++)open[i].classList.remove("on");
+    });
+    li.appendChild(b);nav.appendChild(li);
+  }
+})();
+</script>
+
+</body>
+</html>
